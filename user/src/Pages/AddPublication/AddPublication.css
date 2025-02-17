@@ -1,10 +1,11 @@
 .layout {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  background-color: #f5f5f5; /* Soft background color for a modern look */
+  background-color: #121212;
+  padding: 20px;
 }
 
 .add-publication-content {

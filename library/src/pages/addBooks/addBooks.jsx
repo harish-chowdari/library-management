@@ -67,6 +67,11 @@ function AddBooks() {
         formData.append('description', bookDetails.description);
         formData.append('fine', bookDetails.fine);
         formData.append('numberOfCopies', bookDetails.numberOfCopies); // Append number of copies to the form data
+        if (!bookDetails.authorName?.trim() || !bookDetails.isbnNumber?.trim() || !bookDetails.bookName?.trim() || !bookDetails.publishedDate?.trim() || !bookDetails.bookImage || !bookDetails.description?.trim() || !bookDetails.fine?.trim() || !bookDetails.numberOfCopies) {
+            setpopUpText("Please fill all the fields.");
+            setIsPopUpOpen(true);
+            return;
+        }
 
         try { 
             setLoading(true);
@@ -120,7 +125,7 @@ function AddBooks() {
         name="bookName"
         value={bookDetails.bookName}
         onChange={handleChange}
-        required
+        
     />
 
     <label htmlFor="authorName">Author Name:</label>
@@ -130,7 +135,7 @@ function AddBooks() {
         name="authorName"
         value={bookDetails.authorName}
         onChange={handleChange}
-        required
+        
     />
 
     <label htmlFor="isbnNumber">ISBN Number:</label>
@@ -140,7 +145,7 @@ function AddBooks() {
         name="isbnNumber"
         value={bookDetails.isbnNumber}
         onChange={handleChange}
-        required
+        
     />
 
     <label htmlFor="publishedDate">Published Date:</label>
@@ -150,7 +155,7 @@ function AddBooks() {
         name="publishedDate"
         value={bookDetails.publishedDate}
         onChange={handleChange}
-        required
+        
     />
 
     <label htmlFor="description">Description:</label>
@@ -172,7 +177,7 @@ function AddBooks() {
         name="fine"
         value={bookDetails.fine}
         onChange={handleChange}
-        required
+        
     />
 
     <label htmlFor="bookImage">Book Image:</label>
@@ -196,7 +201,7 @@ function AddBooks() {
         value={bookDetails.numberOfCopies}
         onChange={handleChange}
         min="1" 
-        required
+        
     />
 
     <button type="submit">Submit Book Details</button>

@@ -1,0 +1,166 @@
+.user-books-container {
+    margin: 0 10px;
+    display: flex;    
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    margin: 0px;
+  } 
+  
+  .empty-user{
+    text-align: center;
+  }
+  
+  .user-books-container h2{
+    text-align: center;
+    margin: 0px;
+    padding: 15px 0px;
+    color:rgb(35, 82, 102);
+    box-shadow: 1px 1px 8px rgba(68, 89, 98, 0.5);
+    font-size: 1.7rem;  
+    text-transform: capitalize;
+  }
+  
+  .user-books-division{
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 25px;
+    margin-top: 20px;
+  }
+  
+  .user-books-hr {
+    height: 0px;
+    background: rgba(68, 89, 98);
+    border: none;
+    margin: 0px;
+  }
+  
+  .user-books-headings{
+    
+    font-weight: 600;
+    padding: 10px ;
+    border-bottom: 5px solid rgba(68, 89, 98);
+    
+  }
+
+  .user-books-headings h3{
+    font-size: 20px;
+    color: rgba(68, 89, 98);
+  }
+  
+  .user-books-format-main {
+    display: grid;
+    grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr 1.2fr 0.7fr 0.7fr;
+    align-items: center;
+    gap: 15px;
+    padding: 0px 0px;
+    box-sizing: border-box;
+   
+    text-transform: capitalize;
+  
+  }
+  
+  .user-books-format-main{
+    margin: 0px;
+    font-size: 1.05rem;
+    margin-top: 15px;
+    padding: 10px 15px;
+    padding-bottom: 0px;
+  
+  }
+
+  .user-books-items-format {
+    animation: slideInLeft 0.5s ease forwards;
+
+  }
+  
+  .bottom-hr{
+    background-color: rgba(68, 89, 98);
+    border: none;
+    margin: 0px;
+    height: 2px;
+    margin-top: 5px;
+  }
+  
+  
+  
+  
+  .user-books-format-main img{
+    width: 80px;
+    height: 75px;
+  }
+  
+  
+  .user-books-items-format p{
+    font-weight: 600;
+    margin: 0px;
+    padding: 5px 0px;
+    border-radius: 5px;
+    
+  }
+  
+  .user-books-format-main h3{
+    margin: 5px 0px;
+    
+  }
+
+  .user-books-items-format p{
+    font-size: 16px;
+  }
+
+  
+  
+  
+  @keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+  }
+  
+  
+  
+  
+  .user-books-main-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+    margin-bottom: 30px;
+  }
+  
+  .user-books-main-div button{
+    font-size: 1.1rem;
+    padding: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #47b78a;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .user-books-fine{
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .user-books-usebyDays{
+    border-right: 3px solid;
+    
+  }
+
+  .user-books-empty-history{
+    text-align: center;
+  }
+  
+  
+  

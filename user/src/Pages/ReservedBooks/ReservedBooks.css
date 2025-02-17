@@ -1,0 +1,89 @@
+.history-container {
+ 
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.history-division {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-headings {
+  display: grid;
+  grid-template-columns: 0.5fr 1.2fr 1.2fr 1fr 1fr 0.8fr 1.5fr;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid gray;
+
+}
+
+.history-headings h3 {
+  text-align: center;
+}
+
+.history-items-format {
+  display: grid;
+  grid-template-columns: 0.5fr 1.2fr 1.2fr 1fr 1fr 0.8fr 1.5fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+}
+
+.history-items-format img {
+  height: 80px;
+  width: 80px;
+}
+
+.history-items-format p {
+  text-align: center;
+}
+
+.book-fine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.usebyDays {
+  font-weight: bold;
+  padding: 0px 10px;
+  text-align: justify; 
+}
+
+.bottom-hr {
+  margin: 10px 0;
+}
+
+.Main-div {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.Main-div button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Main-div button:hover {
+  background-color: #45a049;
+}

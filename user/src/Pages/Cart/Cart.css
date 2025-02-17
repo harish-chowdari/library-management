@@ -1,0 +1,193 @@
+.cart-container {
+    margin: 0 0px;
+    display: flex;    
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+  }
+
+  .cart-img{
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;  
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    filter: blur(7px);
+    
+  }
+
+  .cart-container h2{
+    text-align: center;
+    margin: 0px;
+    padding: 15px 0px;
+    color: rgb(62, 89, 98);
+
+  }
+
+  .cart-division{
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 25px;
+    margin-top: 20px;
+    
+  }
+
+  .cart-hr {
+    height: 0px;
+    background: rgb(62, 89, 98);
+    border: none;
+    margin: 0px;
+  }
+
+  .cart-headings{
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 10px;
+    border-bottom: 5px solid rgb(62, 89, 98);
+    color: rgb(62, 89, 98);
+  }
+  
+  .cartitems-format-main {
+    display: grid;
+    grid-template-columns: 0.7fr 1.5fr 1.5fr 1fr 1fr 1fr ;
+    align-items: center;
+    gap: 15px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    z-index: -1;
+    text-transform: capitalize;
+
+  }
+
+
+  .cartitems-format-main h3{
+    margin: 0px;
+    margin: 7px 10px;
+    
+  }
+
+  .cart-items-format{
+    margin: 0px;
+    font-size: 1.05rem;
+    margin-top: 15px;
+    padding: 10px 15px;
+    padding-bottom: 0px;
+    margin-bottom: 6px;
+    margin-top: 20px;
+    animation: slideInLeft 0.5s ease forwards;
+
+  }
+
+  .cart-items-format p{
+    font-weight: 600;
+    margin: 0px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .bottom-hr-cart{
+    background: rgb(62, 89, 98);
+    border: none;
+    margin: 0px;
+    height: 2px;
+  }
+
+
+  
+
+  .cartitems-format-main img{
+    width: 80px;
+    height: 75px;
+  }
+
+
+
+  .remove-button{
+    cursor: pointer;
+    border: none;
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0.8), rgba(202, 2, 2, 0.6));
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    color: black;
+    background-color: transparent;
+    padding: 7px 0px;
+    font-size: 1.05rem;
+    margin: 0px 10px;
+    border-radius: 5px;
+    transition: 0.4s;
+    height: auto;
+    width: 100px;
+    border: 1px solid red;
+    color: rgb(62, 89, 98);
+  }
+
+  .remove-button:hover{
+    background-size: 100% 100%;
+    border: none;
+    color: white;
+    background-color: transparent;
+    
+  }
+
+  .reserve-button{
+    background-image: linear-gradient(to right, rgba(19, 122, 83, 0.9), rgba(19, 122, 89, 0.7) );
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 7px 0px;
+    font-size: 1.05rem;
+    margin: 0px 10px;
+    border-radius: 5px;
+    height: auto;
+    width: 100px;
+    background-color: transparent;
+    transition: 0.4s;
+  }
+
+  .reserve-button:hover{
+    background-image: linear-gradient(to right, rgba(19, 122, 83, 0.9), rgba(19, 122, 89, 0.7) );
+    background-size: 0% 100%;
+    color: black;
+    border: 1px solid #47b78a;
+  }
+
+ 
+
+  .use-by-cart{
+    height: 30px;
+    padding: 0px 8px;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    margin: 0px 10px;
+    margin-right: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+   
+ 
+
+
+  @keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+

@@ -1,0 +1,10 @@
+
+.sidebar-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-layout-content {
+    flex-grow: 1;
+}
+ 

@@ -1,0 +1,72 @@
+.createAccountContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #121212;
+}
+
+.createAccountFormContainer {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.createAccountFormContainer h2 {
+  color: #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.createAccountForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.createAccountForm input {
+  width: 100%;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 325px;
+}
+
+.createAccountForm input:focus {
+  outline: none;
+  border-color: #ff9800;
+}
+
+.createAccountForm button {
+  background: #ff9800;
+  color: #121212;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px;
+}
+
+.createAccountForm button:hover {
+  background: #e68900;
+}
+
+.alternateAction {
+  margin-top: 15px;
+  color: #e0e0e0;
+}
+
+.alternateAction a {
+  color: #ff9800;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.alternateAction a:hover {
+  text-decoration: underline;
+}

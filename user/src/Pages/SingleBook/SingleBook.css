@@ -1,0 +1,140 @@
+.book-container {
+  display: flex;    
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  
+  }
+  
+  .book-container h3 {
+    margin: 0px;
+    text-align: center;
+    padding: 20px 10px;
+    box-shadow: 2px 2px 10px rgb(155, 153, 153);
+    background-color: #4ECCA3;
+    color: white;
+    position: sticky;
+    top: 0;
+    font-size: 1.5rem;
+  }
+
+  
+  
+  
+  .book-details {
+    margin: 10px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+  }
+  
+  .book-left {
+    width: 50%;
+    margin: 0px;
+  }
+  
+  .book-left img {
+    width: 90%;
+    height: 80vh;
+  }
+  
+  .book-left h2 {
+    margin: 0px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .book-right{
+    border: 2px solid rgb(68, 89, 98);
+    border-radius: 17px;
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    width: 40%;
+    justify-content: space-between;
+    background-color: rgba(238, 240, 241, 0.384);    
+    box-shadow: 2px 2px 5px rgb(68, 89, 98);
+
+  }
+
+  .book-right hr{
+    border: none;
+    background-color: rgb(68, 89, 98);
+    height: 2px;
+  }
+
+  .book-right h2{
+    border-bottom: rgb(68, 89, 98);
+    margin: 0px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    text-align: center;
+    padding: 10px;
+    text-transform: capitalize;
+    
+  }
+  
+  .book-right span {
+    font-weight: 500;
+    font-size: 1.2rem;
+    min-width: 150px;
+  }
+  
+  .p-tags{
+    
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      padding: 0px 20px;
+      padding-right: 30px;
+      margin: 0px auto;
+      margin-top: 20px;
+      align-items: self-start;
+      justify-content: space-between;
+      
+  }
+
+  .p-tags p{
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5px;
+    text-transform: capitalize;
+    border-bottom: 1px solid rgb(68, 89, 98);
+    width: 100%;
+    padding: 0px 5px;
+    
+  }
+
+
+  .add-to-cart-btn {
+    border: none;
+    background-color: rgb(68, 89, 98);
+    color: white;
+    padding: 13px 25px;
+    font-size: 1.1rem;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-top: 10%;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .add-to-cart-btn:hover {
+    background-color: rgb(68, 89, 98, 0.9); 
+  }
+
+  .des{
+    text-align: justify;
+  }
+
+  
+  

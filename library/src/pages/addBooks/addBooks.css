@@ -1,0 +1,119 @@
+.addbook-content{
+    flex-grow: 1; 
+}
+.addBook-header{
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
+    
+} 
+
+.addBook-header h2{
+    text-align: center;
+    margin: 0px auto;
+    margin-left: 45%;
+    font-size: 1.8rem;
+    color: rgb(35, 82, 102);
+    
+}
+
+.header-user{
+    color: rgba(68, 89, 98);
+    margin-right: 10%;
+}
+
+.book-details-form-container{
+    height: 100%;
+    width: 100%;
+    background-image: url("../../assets/4855443.jpg");
+}
+.book-details-form {
+    width: 70%;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+}
+
+.book-details-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+
+.book-details-form input[type="number"],
+.book-details-form input[type="text"],
+.book-details-form input[type="date"],
+.book-details-form input[type="file"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.book-details-form input[type="number"]:focus,
+.book-details-form input[type="text"]:focus,
+.book-details-form input[type="date"]:focus,
+.book-details-form input[type="file"]:focus,
+.textarea-description:focus {
+    border-color: rgba(68, 89, 98, 0.7); 
+    outline: none; 
+    
+    box-shadow: 0 0 0 3px rgba(68, 89, 98, 0.1); 
+}
+
+.book-details-form input[type="file"]{
+    cursor: pointer;
+}
+
+
+.book-details-form button {
+    background-color: rgba(68, 89, 98);
+    color: #FFF;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+.book-details-form button:hover {
+    background-color: rgb(59, 75, 82);
+}
+.image-preview {
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+    width: 120px; /* Fixed width for the small container */
+    height: 120px; /* Fixed height for the small container */
+    overflow: hidden; /* Ensures no overflow */
+    display: inline-block; /* Allows container to only take up as much space as needed */
+  }
+  
+  .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Covers the area, may crop the image */
+    /* If you prefer no cropping but potential letterboxing, use 'contain' instead */
+  }
+
+
+.textarea-description {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: 'Arimo', sans-serif; /* Match the font to your form's style */
+    box-shadow:  0 1px 3px rgba(0, 0, 0, 0.1);
+    resize: vertical; /* Allows the user to vertically resize the textarea */
+}

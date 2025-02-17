@@ -1,0 +1,115 @@
+.book-card {
+  position: relative;
+  border: 1px solid rgb(62, 89, 98);
+  padding: 3px;
+  padding-bottom: 0px;
+  transition: transform 0.3s ease; /* Transition when hovering and unhovering */
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+ 
+.book-image img { 
+  cursor: pointer;
+  width: 200px;
+  height: 36vh;
+  object-fit: fill;
+  border-radius: 10px;
+}
+
+.book-title {
+  z-index: 2;
+  transform: translateY(100%);
+  position: absolute;
+  bottom: -2px;
+  width: 200px;
+  background-color: rgb(255, 255, 255);
+  transition: transform 0.3s ease; 
+  animation: slideOut 0.4s ease forwards; /* Animation on hover */
+
+}
+
+.book-card:hover .book-title {
+  display: block; /* Show on hover */
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  animation: slideIn 0.4s ease forwards; /* Animation on hover */
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.book-title h3 {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: capitalize;
+  border: 2px solid rgb(62, 89, 98);
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.stock-div {
+  width: 100px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.out-of-stock {
+  width: auto;
+  height: 35px;
+  background-color: white;
+}
+
+.will-use-by-home {
+  margin: 0px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.available-date {
+  position: absolute;
+  bottom: 4px;
+  background-color: rgba(24, 41, 41, 0.8);
+  padding: 0px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  width: 96%;
+}
+
+.available-date p {
+  margin: 0px;
+  padding: 3px 6px;
+  color: white;
+}
+
+.book-rating {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgb(31, 34, 32);
+}
+
+.book-rating p {
+  margin: 0px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}

@@ -1,0 +1,126 @@
+/* SearchBar.css */
+.search-bar {
+    width: 70%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+}
+.search-bar-form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    position: relative;
+}
+.search-bar-container{
+    width: 100%;
+    position: relative;
+}
+.search-sub-bar-container{
+    width: 100%;
+}
+.search-bar input {
+    width: 90%;
+    height: 5vh;
+    padding: 0rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #F0F5FF;
+}
+
+.search-bar input::placeholder {
+    color: #A9ADBE;
+    letter-spacing: 0.06rem;
+}
+.search-bar button {
+    height: 5vh;
+    width: 20%;
+    border: none;
+    background: #4ECCA3;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    letter-spacing: 0.06rem;
+    
+}
+
+.search-bar button:hover {
+    background-color: #45B097;
+}
+
+.search-bar input:focus,
+.search-bar button:focus {
+    outline: none;
+}
+
+.search-bar-input{
+    width: 100%;
+    position: relative;
+
+}
+.search-loading {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1000;
+}
+
+
+.search-results {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-top: -1px;
+    overflow: hidden;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.search-results li {
+    padding: 10px 15px;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.search-results li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+.search-results li:hover {
+    background-color: #f8f8f8;
+}
+
+
+.search-bar input[type="text"]::placeholder {
+    color: #999;
+    opacity: 1; 
+}
+
+.search-bar input[type="text"]:-ms-input-placeholder {
+    color: #999;
+}
+.search-bar input[type="text"]::-ms-input-placeholder {
+    color: #999;
+}
+.search-bar input[type="text"]:focus {
+    border-color: #4ECCA3;
+}

@@ -5,3 +5,8 @@ node_modules
 
 
 .env
+
+# no env
+
+# build
+build

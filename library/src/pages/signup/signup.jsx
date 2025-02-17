@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import './signup.css'; // Import specific CSS for CreateAccountPage
+import styles from './signup.module.css'; // Import specific CSS for CreateAccountPage
 import {Link,useNavigate} from 'react-router-dom';
 import librarianImage from '../../assets/librarian.png';
 import axios from "../../axios/axios"
@@ -59,48 +59,38 @@ const CreateAccountPage = () => {
     }
     return (
         <>
-            <div className="create-account-container">
-                {isBackgroundBlurred && <div style={blurredBackgroundStyles} />}
-                {loading && <Loader />}
-                <div className='librarian-container'>
-                    <img src={librarianImage} alt="" />
-                </div>
-                <div className='create-account-form-container'>
-                    <h2>Create an Account</h2>
-                    <form className="create-account-form">
-                        <input 
-                            type="text" 
-                            placeholder="Full Name" 
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            required
-                            />
-                        <input 
-                            type="email"
-                            placeholder="Email" 
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            />
-                        <input 
-                            type="password" 
-                            placeholder="Password" 
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            />
-                        <button type="submit" onClick={handleCreateAccount} >Create Account</button>
-                    </form>
-                    <div className="alternate-action">
-                        Already have an account? <Link to="/login">Login</Link>
-                    </div>
+            <div className={styles.createAccountContainer}>
+            {loading && <Loader />}
+            <div className={styles.createAccountFormContainer}>
+                <h2 style={{fontSize:"1.5rem"}}>Admin Sign Up</h2>
+                <form className={styles.createAccountForm}>
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button type="submit" onClick={handleCreateAccount}>Create Account</button>
+                </form>
+                <div className={styles.alternateAction}>
+                    Already have an account? <Link to="/login">Login</Link>
                 </div>
             </div>
-            <PopUp
-                isOpen={isPopUpOpen}
-                close={() => setIsPopUpOpen(false)}
-                text={popUpText}
-            />
+
+            <PopUp isOpen={isPopUpOpen} close={() => setIsPopUpOpen(false)} text={popUpText} />
+        </div>
         </>
     );
 };

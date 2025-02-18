@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './bookCard.css';
 import axios from '../../axios/axios';
 import Loader from '../loader/loader';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
   const [show, setShow] = useState(false);
   const [reserveCount, setReserveCount] = useState();
   const [Copies, setCopies] = useState();
   const [loading, setLoading] = useState(false);
+  const { userName } = useParams();
+
+  const navigate = useNavigate();
 
   // Function to fetch the reservation data
   const fetchReservationData = async () => {
@@ -82,26 +86,32 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
   }, [show]);
 
   return (
-    <div className="book-card">
+    <div onClick={() => {
+        if (reserveCount === 0) {
+          setShow(!show);
+        }
+      }}
+      className="book-card">
       <div className="book-image">
         <img
-          onClick={() => {
-            if (reserveCount === 0) {
-              setShow(!show);
-            }
-          }}
+          
           src={imageUrl}
           alt={title.toUpperCase()}
         />
         <div className="book-div">
-          {show ? (
-            <button className="dlt-btn" onClick={handleDelete}>
-              Delete
-            </button>
-          ) : (
-            <h2 className="book-author">{title}</h2>
-          )}
-        </div>
+          {show && 
+            <div className='edit-delete'>
+              <button onClick={() => navigate(`/app/${userName}/edit-book/${id}`)} className='edit-btn'>
+                Edit
+              </button>
+              <button className="dlt-btn" onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
+          
+          }
+          </div>
+        <h2 className="book-author">{title}</h2>
         <div className="home-count">
           <p>
             {remainingCopies}/{Copies}

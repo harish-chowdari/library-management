@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import "./addBooks.css";
-import { IoNotifications } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa";
-import PopUp from "../../components/popups/popup";
+import React, { useState } from 'react'
+import PopUp from '../../components/popups/popup';
 import Loader from '../../components/loader/loader';
-import axios from "../../axios/axios";
+import { useParams } from 'react-router-dom';
+import axios from '../../axios/axios';
 
-function AddBooks() {
+const EditBook = () => {
+
     const [bookDetails, setBookDetails] = useState({
         authorName: '',
         isbnNumber: '',
@@ -106,13 +105,14 @@ function AddBooks() {
         }
     };
 
-    return (
-        <div className='layout'>
+
+  return (
+    <div className='layout'>
             {isBackgroundBlurred && <div style={blurredBackgroundStyles} />}
             {loading && <Loader />}
             <div className="addbook-content">
                 <div className="addBook-header">
-                    <h2>Add Book</h2>
+                    <h2>Edit Book</h2>
                     <div className='header-user' >
                         
                     </div>
@@ -217,7 +217,7 @@ function AddBooks() {
                 text={popUpText}
             />
         </div>
-    );
+  )
 }
 
-export default AddBooks;
+export default EditBook

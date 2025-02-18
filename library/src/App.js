@@ -9,6 +9,7 @@ import Users from "./pages/Users/Users.js"
 import UserBooks from './pages/UserBooks/UserBooks.js';
 import Publications from './pages/Publications/Publications.jsx';
 import PasswordReset from './pages/PasswordReset/PasswordReset.jsx';
+import EditBook from './pages/EditBook/EditBook.jsx';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/app/:userName" element={<SidebarLayout />}>
           <Route index element={<Home />} />
           <Route path="add-books" element={<AddBooks />} />
+          <Route path="edit-book/:id" element={<EditBook/>} />
           <Route path='reserved-users' element = {<Users/>} />
           <Route path="reserved-users/:userId" element={<UserBooks/>} />
           <Route path='publications' element={<Publications/>} />

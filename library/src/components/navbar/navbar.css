@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 0px 0px;
 }
 
 .nav-links {
@@ -181,6 +181,8 @@
   right: 0;
   background-color: #1e1e1e;
   padding: 20px;
+  padding-top: 50px;
+  padding-bottom: 250px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
@@ -237,4 +239,10 @@
     left: 10%;
     border-radius: 8px;
   }
+}
+
+.div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

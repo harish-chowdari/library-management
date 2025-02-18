@@ -49,6 +49,23 @@
   background-color: #e68900;
 }
 
+.edit-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
 .dlt-btn {
   position: absolute;
   top: 10px;

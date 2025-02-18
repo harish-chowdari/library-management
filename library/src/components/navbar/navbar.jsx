@@ -88,11 +88,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="nav-links">
                 <div className='user-div'>
-                    <div className="logout" onClick={handleLogout}>
-                        <button className='logout-btn' onClick={handleLogout}>Logout</button>
-                    </div>
-
-                    <div onClick={()=> setShowData(!showData)}  className='header-user' >
+                    {/* <div onClick={()=> setShowData(!showData)}  className='header-user' >
                         
                         <div >
                             
@@ -103,13 +99,16 @@ const Navbar = () => {
                             <p className='user-ic-div'><FaUser size={22} /> {userData.name}</p>
                             <p className='cgmail-div'><FiMail size={22} /> {userData.email}</p>  
                         </div>}
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
             <div className='logo-div'>
-                <img src={logo} alt='logo' />
-                
+                <div className='menu-icon' >
+                    <NavLink   className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
+                    <span><FaHome size={25}/></span> Home
+                    </NavLink>
+                </div>  
                 
                 <input autoFocus
                     className='search-filter'
@@ -118,16 +117,8 @@ const Navbar = () => {
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />
-
-            <div className='menu-icon' >
-
-            <NavLink   className="menu-nav-link" onClick={()=>setMenuOpen(false)}
-            to={`/app/${userName}`} >
-            <span><FaHome size={25}/></span> Home
-            </NavLink>
-            </div>  
-
-            <div>
+            <div className='div'>
+                <div>
                 {menuOpen ?  
                 <CgClose onClick={()=>setMenuOpen(!menuOpen)} className='menu-icn' size={25} /> 
                 :
@@ -139,7 +130,8 @@ const Navbar = () => {
                                     
                         <div className='menu-icon' >
                         <NavLink className="menu-nav-link" onClick={()=>setMenuOpen(false)}
-                        to={`/app/${userName}/add-books`} >
+                            to={`/app/${userName}/add-books`}
+                        >
                 
                             <span><PiBooks size={25}/></span> Add Books
                             </NavLink>
@@ -147,8 +139,7 @@ const Navbar = () => {
 
                         <div className='menu-icon' >
 
-                        <NavLink className="menu-nav-link" onClick={()=>setMenuOpen(false)}
-                            to={`/app/${userName}/reserved-users`}>
+                        <NavLink className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
                 
                             <span><FaUsers size={25}/></span> Reserved Users
                             </NavLink>
@@ -157,8 +148,7 @@ const Navbar = () => {
 
                         <div className='menu-icon' >
 
-                        <NavLink className="menu-nav-link" onClick={()=>setMenuOpen(false)}
-                            to={`/app/${userName}/publications`}>
+                        <NavLink className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
                 
                             <span><FaBook size={22}/></span> Publications
                             </NavLink>
@@ -170,22 +160,27 @@ const Navbar = () => {
                     
                 </div>
 
+                {filteredBooks.length > 0 && (
+                    <div className="filtered-cards-container">
+                        {filteredBooks.map((book) => (
+                            <div className='book-cards' key={book._id} onClick={() => handleBookClick(book._id)}>
+                                <BookCard
+                                    id={book._id}
+                                    title={book.bookName}
+                                    author={book.authorName}
+                                    imageUrl={book.bookImage}
+                                />
+                            </div> 
+                        ))}
+                    </div>
+                )}  
+                <div className="logout" onClick={handleLogout}>
+                            <button className='logout-btn' onClick={handleLogout}>Logout</button>
+                </div>
             </div>
 
-            {filteredBooks.length > 0 && (
-                <div className="filtered-cards-container">
-                    {filteredBooks.map((book) => (
-                        <div className='book-cards' key={book._id} onClick={() => handleBookClick(book._id)}>
-                            <BookCard
-                                id={book._id}
-                                title={book.bookName}
-                                author={book.authorName}
-                                imageUrl={book.bookImage}
-                            />
-                        </div> 
-                    ))}
-                </div>
-            )}  
+            
+            </div>
         </nav>
     );
 };

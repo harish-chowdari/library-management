@@ -86,6 +86,9 @@ const LoginPage = () => {
                     />
                     <button className={styles.submitButton} type="submit">Log In</button>
                 </form>
+                <div className={styles.forgotPassword}>
+                    Forgot Password? <Link className={styles.forgotPasswordLink} to="/password-reset">Reset Password</Link>
+                </div>
                 <div className={styles.signupLink}>
                     Don't have an account? <Link to="/signup">Sign up</Link>
                 </div>

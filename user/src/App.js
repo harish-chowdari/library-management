@@ -10,6 +10,7 @@ import SingleBook from './Pages/SingleBook/SingleBook';
 import ReservedBooks from './Pages/ReservedBooks/ReservedBooks';
 import SubmittedBooks from './Pages/SubmittedBooks/SubmittedBooks';
 import AddPublication from './Pages/AddPublication/AddPublication';
+import PasswordReset from './Pages/PasswordReset/PasswordReset';
 
 
 
@@ -21,6 +22,8 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login/>} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/password-reset" element={<PasswordReset />} />
+
         <Route path="/" element={<Navigate replace to="/login" />} />
         
         {/* SidebarLayout and its child routes */}

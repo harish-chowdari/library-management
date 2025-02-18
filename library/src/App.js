@@ -8,6 +8,7 @@ import SidebarLayout from './layout/sidebarLayout.jsx';
 import Users from "./pages/Users/Users.js"
 import UserBooks from './pages/UserBooks/UserBooks.js';
 import Publications from './pages/Publications/Publications.jsx';
+import PasswordReset from './pages/PasswordReset/PasswordReset.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
     <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/password-reset" element={<PasswordReset />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
         
         <Route path="/app/:userName" element={<SidebarLayout />}>

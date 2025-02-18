@@ -1,0 +1,247 @@
+.navbar {
+  background: #1e1e1e;
+  padding: 15px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.user-div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.logo-div img {
+  height: 50px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.logo-div img:hover {
+  transform: scale(1.05);
+}
+
+.search-filter {
+  flex: 1;
+  max-width: 500px;
+  padding: 12px 20px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  font-size: 14px;
+  transition: all 0.3s;
+  margin: 0 20px;
+}
+
+.search-filter:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 1px rgba(255, 152, 0, 0.3);
+}
+
+.search-filter::placeholder {
+  color: #888;
+}
+
+.menu-icn {
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-icn:hover {
+  color: #ff9800;
+}
+
+.menu-items {
+  position: absolute;
+  top: 110%;
+  right: 20px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: slideIn 0.3s ease;
+  z-index: 1001;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0px 15px;
+  color: #e0e0e0;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.menu-nav-link:hover {
+  background-color: #2a2a2a;
+  color: #ff9800;
+}
+
+.menu-nav-link span {
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #ff9800;
+  border-color: #ff9800;
+  color: #121212;
+}
+
+.header-user {
+  position: relative;
+  cursor: pointer;
+}
+
+.my-profile {
+  color: #888;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.my-profile:hover, .my-profile-active {
+  color: #ff9800;
+}
+
+.user-data {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 15px;
+  min-width: 220px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+  z-index: 1001;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.user-ic-div, .cgmail-div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.filtered-cards-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #1e1e1e;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  max-height: 500px;
+  overflow-y: auto;
+  animation: slideDown 0.3s ease;
+  z-index: 999;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.book-cards {
+  transition: transform 0.3s;
+  cursor: pointer;
+  background: #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #444;
+}
+
+.book-cards:hover {
+  transform: translateY(-5px);
+  border-color: #ff9800;
+  box-shadow: 0 5px 15px rgba(255, 152, 0, 0.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .logo-div {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .search-filter {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .user-div {
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .menu-items {
+    width: 80%;
+    right: 10%;
+    left: 10%;
+    border-radius: 8px;
+  }
+}
+
+.div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-direction: row-reverse;
+}

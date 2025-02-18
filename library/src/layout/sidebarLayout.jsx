@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/sidebar/sidebar';
 import './sidebarLayout.css'; // You'll create a CSS file for layout-specific styling
+import Navbar from '../components/navbar/navbar';
 
 const SidebarLayout = () => {
     return (
         <div className="sidebar-layout">
-            <Sidebar />
+            <Navbar />
             <div className="sidebar-layout-content">
                 <Outlet /> 
             </div>

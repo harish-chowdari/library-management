@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios/axios';
 import { NavLink, useParams } from 'react-router-dom';
-import "./SideBar.css";
+import "./Navbar.css";
 import { FaHome,FaAlignJustify, FaRegUser, FaBook, FaUser } from "react-icons/fa";
 import logo from "../../assets/[removal.ai]_ab348180-27e7-439f-b339-6d4f95342f85-screenshot-2024-03-16-at-3-46-20-am_3QQD13.png"
 import BookCard from '../BookCard/BookCard';
@@ -15,7 +15,7 @@ import { FiMail } from "react-icons/fi";
 
 
 
-const Sidebar = () => {
+const Navbar = () => {
     const { userName } = useParams();
     const [cartItems, setCartItems] = useState([]);
     const userId = localStorage.getItem("userId");
@@ -103,41 +103,12 @@ const Sidebar = () => {
     ) : [];
 
     return (
-        <nav className="sidebar">
+        <nav className="navbar">
             <div className="nav-links">
 
-            <h3>
-            <Typewriter
-                className="typewriter"
-                words={[
-                    'Expand your mind with a good book.',
-                    'Books are the keys to knowledge and wisdom.',
-                    'Explore new worlds through the pages of a book.',
-                    'Discover the power of imagination in every story.',
-                    'A book is a journey waiting to be taken.',
-                    'Get lost in a story and find yourself.',
-                    'Books can change lives, one page at a time.',
-                    'Find solace and inspiration in the pages of a book.',
-                    'Open a book and open your mind to endless possibilities.',
-                    'The best adventures begin with a book in hand.'
-                        ]}
-                loop={5000}
-                cursor
-                cursorStyle='_'
-                typeSpeed={70}
-                deleteSpeed={30}
-                delaySpeed={1000}
-                />
-
-       
-            </h3> 
-
         <div className='user-div'>
-                <div className="logout" onClick={handleLogout}>
-                    <button className='logout-btn' onClick={handleLogout}>Logout</button>
-                </div>
 
-                <div onClick={()=> setShowData(!showData)}  className='header-user' >
+                {/* <div onClick={()=> setShowData(!showData)}  className='header-user' >
                     
                     <div >
                         
@@ -148,19 +119,18 @@ const Sidebar = () => {
                         <p className='user-ic-div'><FaUser size={22} /> {userData.name}</p>
                         <p className='cgmail-div'><FiMail size={22} /> {userData.email}</p>  
                     </div>}
-                </div>
-
-            
-
-           
+                </div> */}
 
         </div>
             </div>
 
             <div className='logo-div'>
-                <img src={logo} alt='logo' />
-                
-                
+                <div className='menu-icon' onClick={()=>setMenuOpen(false)}>
+
+                    <NavLink   className="menu-nav-link" to={`/app/${userName}`} >
+                    <span><FaHome size={25}/></span> Home
+                    </NavLink>
+                </div>    
                 <input autoFocus
                     className='search-filter'
                     type="text"
@@ -169,65 +139,63 @@ const Sidebar = () => {
                     onChange={handleSearchChange}
                 />
 
-<div className='menu-icon' onClick={()=>setMenuOpen(false)}>
+            <div className='div'>
 
-<NavLink   className="menu-nav-link" to={`/app/${userName}`} >
-<span><FaHome size={25}/></span> Home
-</NavLink>
-</div> 
-
-            <div>
-                    {menuOpen ?  
-                    <CgClose onClick={()=>setMenuOpen(!menuOpen)} className='menu-icn' size={25} /> 
-                    :
-                    <FaAlignJustify onClick={()=>setMenuOpen(!menuOpen)} className='menu-icn' size={25}/>
-                    }
-            
-                        { menuOpen &&
-                            <div className='menu-items'>
-                                         
-                                <div className='menu-icon' >
-                                <NavLink onClick={()=>setMenuOpen(false)}
-                                 className="menu-nav-link" to={`/app/${userName}/reserved-history`} >
-                                     <p> <PiBooks size={25}/> Reserved Books</p>
-                                </NavLink>
-                                </div>
- 
-                                <div className='menu-icon' >
-
-                                <NavLink onClick={()=>setMenuOpen(false)}
-                                 className="menu-nav-link" to={`/app/${userName}/submitted-history`} >
-                                    <p><PiBooks size={25}/> Submitted Books</p>
-                                 </NavLink>
-                                </div>
-
-                                <div className='menu-icon' >
-                                <NavLink onClick={()=>setMenuOpen(false)}
-                                 className="menu-nav-link" to={`/app/${userName}/publication`} >
-                                    <p><FaBook size={22}/> Book Publication </p>
-                                </NavLink>
-                                </div>
-
-                            </div>
-                        } 
-                        
+            <div className="logout" onClick={handleLogout}>
+                    <button className='logout-btn' onClick={handleLogout}>Logout</button>
                 </div>
 
-                 
+                    <div>
+                        {menuOpen ?  
+                        <CgClose onClick={()=>setMenuOpen(!menuOpen)} className='menu-icn' size={25} /> 
+                        :
+                        <FaAlignJustify onClick={()=>setMenuOpen(!menuOpen)} className='menu-icn' size={25}/>
+                        }
                 
-                <div>
-                    <NavLink onClick={()=>setMenuOpen(false)} to={`/app/${userName}/books-cart`} className={({ isActive }) => "nav-item" + (isActive ? " active" : "")}>
-                        <div className='cart-div'>
-                            <span>
-                                <BsCart3 size={30} className='cart-icon' />
-                            </span>
-                            <div className='cart-count'>
-                                {cartItems && cartItems.length}
-                            </div>
+                            { menuOpen &&
+                                <div className='menu-items'>
+                                            
+                                    <div className='menu-icon' >
+                                    <NavLink onClick={()=>setMenuOpen(false)}
+                                    className="menu-nav-link"  >
+                                        <p> <PiBooks size={25}/> Reserved Books</p>
+                                    </NavLink>
+                                    </div>
+    
+                                    <div className='menu-icon' >
 
-                        </div>
-                    </NavLink>
-                </div>
+                                    <NavLink onClick={()=>setMenuOpen(false)}
+                                    className="menu-nav-link"  >
+                                        <p><PiBooks size={25}/> Submitted Books</p>
+                                    </NavLink>
+                                    </div>
+
+                                    <div className='menu-icon' >
+                                    <NavLink onClick={()=>setMenuOpen(false)}
+                                    className="menu-nav-link"  >
+                                        <p><FaBook size={22}/> Book Publication </p>
+                                    </NavLink>
+                                    </div>
+
+                                </div>
+                            } 
+                            
+                    </div>
+                    
+                    {/* <div>
+                        <NavLink onClick={()=>setMenuOpen(false)} to={`/app/${userName}/books-cart`} className={({ isActive }) => "nav-item" + (isActive ? " active" : "")}>
+                            <div className='cart-div'>
+                                <span>
+                                    <BsCart3 size={30} className='cart-icon' />
+                                </span>
+                                <div className='cart-count'>
+                                    {cartItems && cartItems.length}
+                                </div>
+
+                            </div>
+                        </NavLink>
+                    </div> */}
+            </div>
             </div>
 
             {filteredBooks.length > 0 && (
@@ -253,4 +221,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default Navbar;

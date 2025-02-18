@@ -115,14 +115,14 @@ const BookCard = ({ title, imageUrl, id }) => {
     : 0;
 
   return (
-    <div className="book-card" title="View full details">
+    <div className="book-card" >
       <div className="stock-div">
         {isOutOfStock && (
           <img src={stock} className="out-of-stock" alt="Out of Stock" />
         )}
       </div>
       <div className="book-image">
-        <Link className="link" to={`/app/${userName}/book/${id}`}>
+        <Link className="link">
           <img src={imageUrl} alt={title.toUpperCase()} />
           <div className="book-title">
             <h3 style={{ fontSize: '1rem', margin: '8px' }}>{title}</h3>

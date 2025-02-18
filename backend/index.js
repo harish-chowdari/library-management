@@ -27,6 +27,7 @@ app.use(cors({
 
 const librarianRoutes = require("./routes/librarianRoutes");
 const authRoutes = require("./routes/authRoutes");
+const OtpRouter = require("./routes/OtpRoutes")
 const cartRoutes = require("./routes/CartRoutes")
 const historyRoutes = require("./routes/HistoryRoutes")
 const submitRoutes = require("./routes/SubmissionRoutes")
@@ -39,6 +40,7 @@ const Publication = require("./routes/PublicationRoutes")
 
 app.use("/librarian",librarianRoutes);
 app.use("/auth",authRoutes);
+app.use("/api", OtpRouter)
 app.use("/cart", cartRoutes)
 app.use("/reserved", historyRoutes)
 app.use("/submit", submitRoutes)

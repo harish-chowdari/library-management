@@ -11,6 +11,9 @@ const librarianController = require("../controllers/librarianControllers");
 router.post("/addBook/:isbnNumber",bookUpload,librarianController.addBook );
 
 
+router.post("/editBook/:bookId",bookUpload,librarianController.editBook );
+
+
 router.post("/publish-book-by-user", librarianController.publishBookByUser );
 
 

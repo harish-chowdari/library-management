@@ -10,6 +10,7 @@ const Home = () => {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [sortOrder, setSortOrder] = useState('asc');
     const booksPerPage = 5;
 
     const fetchBooks = async () => {
@@ -28,15 +29,42 @@ const Home = () => {
         fetchBooks();
     }, []);
 
+    const sortedBooks = [...books].sort((a, b) => {
+        if (sortOrder === 'asc') {
+            return a.bookName.localeCompare(b.bookName);
+        } else {
+            return b.bookName.localeCompare(a.bookName);
+        }
+    });
+
     const indexOfLastBook = currentPage * booksPerPage;
     const indexOfFirstBook = indexOfLastBook - booksPerPage;
-    const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+    const currentBooks = sortedBooks.slice(indexOfFirstBook, indexOfLastBook);
 
     return (
         <div className='layout'>
             <div className='bg-img'></div>
             <div className="content">
                 {books.length === 0 ? <h3>Books List is empty</h3> : <h3>Lists of Books</h3>}
+
+                <div className="sort-controls">
+                    <button
+                        onClick={() => { setSortOrder('asc'); setCurrentPage(1); }}
+                        className="sort-btn"
+                        disabled={sortOrder === 'asc'}
+                    >
+                        Sort Ascending
+                    </button>
+                    <button
+                        onClick={() => { setSortOrder('desc'); setCurrentPage(1); }}
+                        className="sort-btn"
+                        disabled={sortOrder === 'desc'}
+                    >
+                        Sort Descending
+                    </button>
+                </div>
+
+
                 {loading ? (
                     <Loader />
                 ) : (
@@ -65,8 +93,8 @@ const Home = () => {
                             </button>
                             <span className="page-info">Page {currentPage}</span>
                             <button
-                                onClick={() => setCurrentPage((prev) => (indexOfLastBook < books.length ? prev + 1 : prev))}
-                                disabled={indexOfLastBook >= books.length}
+                                onClick={() => setCurrentPage((prev) => (indexOfLastBook < sortedBooks.length ? prev + 1 : prev))}
+                                disabled={indexOfLastBook >= sortedBooks.length}
                                 className="pagination-btn"
                             >
                                 Next

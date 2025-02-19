@@ -17,10 +17,10 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
   const fetchReservationData = async () => {
     try {
       const res = await axios.get(`reserved/book-copies-count/${id}`);
-      const resCount = res.data.reservedCount;
+      const resCount = res?.data?.reservedCount;
 
       const bookResponse = await axios.get(`librarian/getbook/${id}`);
-      const numberOfCopies = bookResponse.data.numberOfCopies;
+      const numberOfCopies = bookResponse?.data?.numberOfCopies;
 
       setReserveCount(resCount);
       setCopies(numberOfCopies);
@@ -111,8 +111,8 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
           
           }
           </div>
+        <div className="home-count" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', gap:'5px'}}>
         <h2 className="book-author">{title}</h2>
-        <div className="home-count">
           <p>
             {remainingCopies}/{Copies}
           </p>

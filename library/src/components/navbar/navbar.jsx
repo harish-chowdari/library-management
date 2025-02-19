@@ -105,7 +105,7 @@ const Navbar = () => {
 
             <div className='logo-div'>
                 <div className='menu-icon' >
-                    <NavLink   className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
+                    <NavLink  to={`/app/${userName}`} className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
                     <span><FaHome size={25}/></span> Home
                     </NavLink>
                 </div>  

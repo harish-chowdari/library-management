@@ -23,7 +23,7 @@ function App() {
         <Route path="/app/:userName" element={<SidebarLayout />}>
           <Route index element={<Home />} />
           <Route path="add-books" element={<AddBooks />} />
-          <Route path="edit-book/:id" element={<EditBook/>} />
+          <Route path="edit-book/:bookId" element={<EditBook/>} />
           <Route path='reserved-users' element = {<Users/>} />
           <Route path="reserved-users/:userId" element={<UserBooks/>} />
           <Route path='publications' element={<Publications/>} />

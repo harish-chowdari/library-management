@@ -173,3 +173,35 @@
   font-size: 16px;
   margin: 0 10px;
 }
+
+
+/* Sort Controls */
+.sort-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sort-controls .sort-btn {
+  background-color: #ff9800;
+  border: none;
+  color: #121212;
+  padding: 8px 16px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.sort-controls .sort-btn:hover {
+  background-color: #e68900;
+}
+
+.sort-controls .sort-btn:disabled {
+  background-color: #555;
+  color: #999;
+  cursor: not-allowed;
+}
+

@@ -1,32 +1,74 @@
 const BookModel = require("../models/books");
 const S3 = require("../s3");
-
+const { v4: uuidv4 } = require('uuid');
 
 
 const addBook = async (req, res) => {
-    try {
+  try {
+    console.log('Req Body:', req.body);
 
-        console.log('Req Body:', req.body)
+    const file = req.files.bookImage[0];
+    // Generate a unique filename using uuid
+    const uniqueFileName = `${uuidv4()}_${file.originalname}`;
+    const response = await S3.uploadFile(process.env.AWS_BUCKET_NAME, file, uniqueFileName);
 
-        const response = await S3.uploadFile(process.env.AWS_BUCKET_NAME,req.files.bookImage[0]) ; 
-        const { bookName, authorName, isbnNumber, publishedDate, description, numberOfCopies, fine } = req.body;
-        const book = new BookModel({
-            bookName,
-            authorName,
-            isbnNumber,
-            publishedDate, 
-            bookImage: response.Location,
-            description,
-            numberOfCopies,
-            fine
-        });
-        await book.save();
-        res.status(201).json({ message: "Book added successfully" });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: error.message });
+    const { bookName, authorName, isbnNumber, publishedDate, description, numberOfCopies, fine } = req.body;
+    const book = new BookModel({
+      bookName,
+      authorName,
+      isbnNumber,
+      publishedDate, 
+      bookImage: response.Location,
+      description,
+      numberOfCopies,
+      fine
+    });
+    await book.save();
+    res.status(201).json({ message: "Book added successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const editBook = async (req, res) => {
+  try {
+    console.log('Req Body:', req.body);
+
+    const { bookId } = req.params;
+    const { bookName, authorName, isbnNumber, publishedDate, description, numberOfCopies, fine } = req.body;
+
+    let updatedData = {
+      bookName,
+      authorName,
+      isbnNumber,
+      publishedDate,
+      description,
+      numberOfCopies,
+      fine
+    };
+
+    if (req.files && req.files.bookImage) {
+      const file = req.files.bookImage[0];
+      // Generate a unique filename using uuid
+      const uniqueFileName = `${uuidv4()}_${file.originalname}`;
+      const response = await S3.uploadFile(process.env.AWS_BUCKET_NAME, file, uniqueFileName);
+      updatedData.bookImage = response.Location;
     }
-}
+
+    const updatedBook = await BookModel.findByIdAndUpdate(bookId, updatedData, { new: true });
+
+    if (!updatedBook) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    res.status(200).json({ message: "Book updated successfully", book: updatedBook });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 
 
@@ -217,6 +259,7 @@ const getBookSuggestions = async (req, res) => {
 }
 module.exports = {
     addBook,
+    editBook,
     addWillUseBy,
     fetchAllBooks,
     increaseCopy,

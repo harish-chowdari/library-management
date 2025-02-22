@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from '../../axios/axios';
 import { FaStar, FaRegStar } from 'react-icons/fa'; // Import star icons
-import "./BookCard.css";
+import styles from "./BookCard.module.css";
 import stock from "../../assets/Untitled design.png";
 
 // Custom Star component to fill stars with percentages
@@ -58,14 +58,9 @@ const BookCard = ({ title, imageUrl, id }) => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
-
-
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get(
-        `feedback/all-feedbacks/${id}`
-      );
+      const response = await axios.get(`feedback/all-feedbacks/${id}`);
       setFeedbacks(response.data.feedbacks);
       setLoading(false);
     } catch (error) {
@@ -73,25 +68,17 @@ const BookCard = ({ title, imageUrl, id }) => {
     }
   };
 
-
-
   const fetchReservationData = async () => {
     try {
-      const res = await axios.get(
-        `reserved/book-copies-count/${id}`
-      );
+      const res = await axios.get(`reserved/book-copies-count/${id}`);
       const resCount = res.data.reservedCount;
 
-      const bookResponse = await axios.get(
-        `librarian/getbook/${id}`
-      );
+      const bookResponse = await axios.get(`librarian/getbook/${id}`);
       const numberOfCopies = bookResponse.data.numberOfCopies;
 
       setIsOutOfStock(resCount >= numberOfCopies);
 
-      const nearestDateRes = await axios.get(
-        `reserved/nearest-will-use-by/${id}`
-      );
+      const nearestDateRes = await axios.get(`reserved/nearest-will-use-by/${id}`);
       const nearestDate = nearestDateRes.data.nearestWillUseBy;
       setNearestWillUseBy(nearestDate);
     } catch (error) {
@@ -99,48 +86,42 @@ const BookCard = ({ title, imageUrl, id }) => {
     }
   };
 
-
   useEffect(() => {
-    
     fetchFeedbacks();
     fetchReservationData();
   }, [id]);
-
-    
-
-    
 
   const averageRating = feedbacks.length
     ? feedbacks.reduce((acc, feedback) => acc + feedback.rating, 0) / feedbacks.length
     : 0;
 
   return (
-    <div className="book-card" >
-      <div className="stock-div">
+    <div className={styles.bookCard}>
+      <div className={styles.stockDiv}>
         {isOutOfStock && (
-          <img src={stock} className="out-of-stock" alt="Out of Stock" />
+          <img src={stock} className={styles.outOfStock} alt="Out of Stock" />
         )}
       </div>
-      <div className="book-image">
-        <Link className="link">
-          <img src={imageUrl} alt={title.toUpperCase()} />
-          <div className="book-title">
+      <div className={styles.bookImage}>
+        <Link to={`/app/${userName}/book/${id}`} className={styles.link}>
+          <img className={styles.bookImg} src={imageUrl} alt={title.toUpperCase()} />
+          <div className={styles.bookTitle}>
             <h3 style={{ fontSize: '1rem', margin: '8px' }}>{title}</h3>
           </div>
         </Link>
       </div>
-      <div className="available-date">
+      <div className={styles.availableDate}>
         {isOutOfStock && (
           <p>
             <strong>Available On:</strong> {nearestWillUseBy ? nearestWillUseBy.slice(0, 10) : 'N/A'}
           </p>
         )}
-      </div>  
-            <div className='book-rating'>
-            <p>
-                {renderStars(averageRating)}
-            </p>
-            </div>
+      </div>
+      <div className={styles.bookRating}>
+        <p>
+          {renderStars(averageRating)}
+        </p>
+      </div>
     </div>
   );
 };

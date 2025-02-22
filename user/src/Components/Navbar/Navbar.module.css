@@ -8,19 +8,19 @@
   border-radius: 0 0 0px 0px;
 }
 
-.nav-links {
+.navLinks {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-.user-div {
+.userDiv {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.logo-div {
+.logoDiv {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,18 +28,18 @@
   flex-wrap: wrap;
 }
 
-.logo-div img {
+.logoDiv img {
   height: 50px;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
 
-.logo-div img:hover {
+.logoDiv img:hover {
   transform: scale(1.05);
 }
 
-.search-filter {
+.searchFilter {
   flex: 1;
   max-width: 500px;
   padding: 12px 20px;
@@ -52,27 +52,27 @@
   margin: 0 20px;
 }
 
-.search-filter:focus {
+.searchFilter:focus {
   outline: none;
   border-color: #ff9800;
   box-shadow: 0 0 0 1px rgba(255, 152, 0, 0.3);
 }
 
-.search-filter::placeholder {
+.searchFilter::placeholder {
   color: #888;
 }
 
-.menu-icn {
+.menuIcn {
   color: #e0e0e0;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
-.menu-icn:hover {
+.menuIcn:hover {
   color: #ff9800;
 }
 
-.menu-items {
+.menuItems {
   position: absolute;
   top: 110%;
   right: 20px;
@@ -93,7 +93,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.menu-nav-link {
+.menuNavLink span {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -105,17 +105,30 @@
   font-weight: 500;
 }
 
-.menu-nav-link:hover {
+.menuNavLink span:hover {
   background-color: #2a2a2a;
   color: #ff9800;
 }
 
-.menu-nav-link span {
+.menuNavLink p {
+  margin: 0px;
   display: flex;
   align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  color: #e0e0e0;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.2s;
+  font-weight: 500;
 }
 
-.logout-btn {
+.menuNavLink p:hover {
+  background-color: #2a2a2a;
+  color: #ff9800;
+}
+
+.logoutBtn {
   background-color: #2a2a2a;
   color: #e0e0e0;
   border: 1px solid #444;
@@ -126,28 +139,29 @@
   transition: all 0.3s;
 }
 
-.logout-btn:hover {
+.logoutBtn:hover {
   background-color: #ff9800;
   border-color: #ff9800;
   color: #121212;
 }
 
-.header-user {
+.headerUser {
   position: relative;
   cursor: pointer;
 }
 
-.my-profile {
+.myProfile {
   color: #888;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-.my-profile:hover, .my-profile-active {
+.myProfile:hover,
+.myProfileActive {
   color: #ff9800;
 }
 
-.user-data {
+.userData {
   position: absolute;
   top: 120%;
   right: 0;
@@ -165,7 +179,8 @@
   to { opacity: 1; }
 }
 
-.user-ic-div, .cgmail-div {
+.userIcDiv,
+.cgmailDiv {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -174,11 +189,11 @@
   font-weight: 500;
 }
 
-.filtered-cards-container {
+.filteredCardsContainer {
   background-color: #1e1e1e;
   padding: 20px;
   padding-top: 80px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
@@ -194,7 +209,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.book-cards {
+.bookCards {
   transition: transform 0.3s;
   cursor: pointer;
   background: #2a2a2a;
@@ -203,40 +218,40 @@
   border: 1px solid #444;
 }
 
-.book-cards:hover {
+.bookCards:hover {
   transform: translateY(-5px);
   border-color: #ff9800;
   box-shadow: 0 5px 15px rgba(255, 152, 0, 0.2);
 }
 
 @media (max-width: 768px) {
-  .logo-div {
+  .logoDiv {
     flex-direction: column;
     align-items: center;
     gap: 15px;
   }
 
-  .search-filter {
+  .searchFilter {
     width: 100%;
     max-width: 100%;
     margin: 10px 0;
   }
 
-  .user-div {
+  .userDiv {
     width: 100%;
     justify-content: space-between;
     margin-bottom: 10px;
   }
-
-  .menu-items {
-    width: 80%;
-    right: 10%;
-    left: 10%;
-    border-radius: 8px;
-  }
 }
 
 .div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.navActions{
   display: flex;
   align-items: center;
   gap: 10px;

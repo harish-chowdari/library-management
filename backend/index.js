@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const cors=require("cors");
 
-const allowedDomains=["http://localhost:3004","http://localhost:3009","http://localhost:3002","http://localhost:3008"]
+const allowedDomains=["http://localhost:3000","http://localhost:3001","http://localhost:3002","http://localhost:3003"]
 // app.use(cors());
 app.use(cors({  
     credentials:true,

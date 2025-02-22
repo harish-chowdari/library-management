@@ -31,7 +31,7 @@ function App() {
           <Route index element={<Home />} />
           
           <Route path="book/:id" element={<SingleBook/>} />
-          <Route path='books-cart' element={<Cart/>} />
+          <Route path='cart' element={<Cart/>} />
           <Route path='reserved-history' element={<ReservedBooks/>} />
           <Route path='submitted-history' element={<SubmittedBooks/>} />
           <Route path='publication' element={<AddPublication/>} />

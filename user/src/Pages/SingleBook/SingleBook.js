@@ -1,80 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios/axios';
 import { useParams } from 'react-router-dom';
-import "./SingleBook.css";
+import styles from './SingleBook.module.css';
 import { Typewriter } from 'react-simple-typewriter';
 import Loader from '../../Components/Loader/Loader';
 import PopUp from '../../Components/Popups/Popup';
-import Feedbacks from "../../Components/Feedbacks/Feedbacks"
-
+import Feedbacks from "../../Components/Feedbacks/Feedbacks";
 
 const SingleBook = ({ cart, setCart }) => {
   const { id } = useParams();
   const [book, setBook] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
-
+  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     async function getBook() {
       try {
         const res = await axios.get(`librarian/getbook/${id}`);
         setBook(res.data);
-        setLoading(false); // Set loading to false after data is fetched
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching book:', error);
       }
     }
-
     getBook();
   }, [id]);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [popUpText, setPopUpText] = useState("");
-  const [isBackgroundBlurred, setIsBackgroundBlurred] = useState(false);
-  const blurredBackgroundStyles = isBackgroundBlurred
-    ? {
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(100, 100, 100, 0.5)",
-        backdropFilter: "blur(1.8px)",
-        zIndex: 1,
-      }
-    : {};
-
-    const addToCart = async () => {
-      const userId = localStorage.getItem("userId");
-      if (book && userId) {
-        try {
-          setLoading(true); // Set loading to true when adding to cart
-          const response = await axios.post('cart/add-to-cart', {
-            userId: userId,
-            bookId: book._id,
-            quantity: 1
-          });
-          console.log(response.data)
-          
-          if (response.data.alreadyAdded) {
-            setPopUpText("This Book is already added to cart");
-            setIsPopUpOpen(true);
-          } 
-          
-          else {
-            setPopUpText("This book is successfully added to the cart");
-            setIsPopUpOpen(true);
-            setCart([...cart, { bookId: book._id, quantity: 1 }]);
-          }
-          console.log(response.data);
-        } catch (error) {
-          console.error('Error adding to cart:', error);
-        } finally {
-          setLoading(false);
+  
+  const addToCart = async () => {
+    const userId = localStorage.getItem("userId");
+    if (book && userId) {
+      try {
+        setLoading(true);
+        const response = await axios.post('cart/add-to-cart', {
+          userId: userId,
+          bookId: book._id,
+          quantity: 1
+        });
+        if (response.data.alreadyAdded) {
+          setPopUpText("This Book is already added to cart");
+          setIsPopUpOpen(true);
+        } else {
+          setPopUpText("This book is successfully added to the cart");
+          setIsPopUpOpen(true);
+          setCart([...cart, { bookId: book._id, quantity: 1 }]);
         }
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      } finally {
+        setLoading(false);
       }
-    };
-    
-
+    }
+  };
+  
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -82,37 +61,37 @@ const SingleBook = ({ cart, setCart }) => {
   };
 
   return (
-    <div className='book-container'>
-    <div className="single-bg-book">
-
-</div>
+    <div className={styles.bookContainer}>
+      <div className={styles.singleBgBook}></div>
       
       {loading ? (
-        <Loader /> // Show loader component while loading
+        <Loader />
       ) : (
         book ? (
-          <div className="book-details">
-            <div className="book-left">
-              <img width="100px" src={book.bookImage} alt={book.bookName} />
+          <div className={styles.bookDetails}>
+            <div className={styles.bookLeft}>
+              <img src={book.bookImage} alt={book.bookName} />
             </div>
-            <div className="book-right">
-              <div>
+            <div className={styles.bookRight}>
+              <div className={styles.bookHeader}>
                 <h2>{book.bookName}</h2>
-                <hr/>
+                <hr />
               </div>
-              <div className='p-tags'>
-                <p><span>Author :</span> {book.authorName}</p>
-                <p><span>isbnNumber :</span> {book.isbnNumber}</p>
-                <p><span>Published in :</span>{formatDate(book.publishedDate)}</p>
-                <p><span>Description :</span> {book.description}</p>
+              <div className={styles.pTags}>
+                <p><span>Author:</span> {book.authorName}</p>
+                <p><span>ISBN:</span> {book.isbnNumber}</p>
+                <p><span>Published:</span> {formatDate(book.publishedDate)}</p>
+                <p><span>Description:</span> {book.description}</p>
               </div>
               <div>
-                <button className="add-to-cart-btn" onClick={addToCart}>Add to Cart</button>
+                <button className={styles.addToCartBtn} onClick={addToCart}>
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
         ) : (
-          <p>Book not found</p>
+          <p className={styles.notFound}>Book not found</p>
         )
       )}
 
@@ -123,7 +102,6 @@ const SingleBook = ({ cart, setCart }) => {
         close={() => setIsPopUpOpen(false)}
         text={popUpText}
       />
-
     </div>
   );
 };

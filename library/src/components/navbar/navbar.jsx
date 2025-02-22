@@ -139,7 +139,7 @@ const Navbar = () => {
 
                         <div className='menu-icon' >
 
-                        <NavLink className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
+                        <NavLink to={`/app/${userName}/reserved-users`} className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
                 
                             <span><FaUsers size={25}/></span> Reserved Users
                             </NavLink>
@@ -148,7 +148,7 @@ const Navbar = () => {
 
                         <div className='menu-icon' >
 
-                        <NavLink className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
+                        <NavLink to={`/app/${userName}/publications`} className="menu-nav-link" onClick={()=>setMenuOpen(false)}>
                 
                             <span><FaBook size={22}/></span> Publications
                             </NavLink>

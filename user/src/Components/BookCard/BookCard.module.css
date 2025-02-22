@@ -1,0 +1,60 @@
+.bookCard {
+  background: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.bookCard:hover {
+  transform: translateY(-5px);
+}
+
+.bookImage {
+  position: relative;
+}
+
+.bookImg {
+  width: 200px;
+  border-radius: 8px;
+  height: 200px;
+  object-fit: fill;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.bookTitle {
+  text-align: center;
+  /* You can adjust the inner spacing as needed */
+  padding: 8px;
+}
+
+.stockDiv {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.outOfStock {
+  width: 40px; /* Adjust size as needed */
+  height: auto;
+  rotate: 11deg;
+  opacity: 0.9;
+  transform: rotate(-10deg); /* Optional tilted effect */
+}
+
+.availableDate {
+  padding: 10px;
+  font-size: 14px;
+  color: #e0e0e0;
+  text-align: center;
+}
+
+.bookRating {
+  padding: 10px;
+  text-align: center;
+}

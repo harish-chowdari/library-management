@@ -92,7 +92,7 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
         }
       }}
       className="book-card">
-      <div className="book-image">
+      <div className="book-image1">
         <img
           
           src={imageUrl}

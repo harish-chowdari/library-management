@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const cors=require("cors");
 
-const allowedDomains=["http://localhost:3000","http://localhost:3001","http://localhost:3002","http://localhost:3003"]
+const allowedDomains=["http://localhost:3004","http://localhost:3009","http://localhost:3002","http://localhost:3008"]
 // app.use(cors());
 app.use(cors({  
     credentials:true,
@@ -57,6 +57,6 @@ app.all("/*",(req,res)=>{
 });
 
 //port listening at in the server
-app.listen(3002, ()=>{
-    console.log("running on port " + 3002); 
+app.listen(3009, ()=>{
+    console.log("running on port " + 3009); 
 }); 

@@ -10,15 +10,15 @@
   transform: translateY(-5px);
 }
 
-.book-image {
+/* .book-image {
   position: relative;
-}
+} */
 
-.book-image img {
+.book-image1 img {
   width: 100%;
   border-radius: 8px;
   height: 200px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .book-div {

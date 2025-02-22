@@ -115,7 +115,7 @@ const EditBook = () => {
 
                         <label>Book Image:</label>
                         <input type="file" accept='image/*' name="bookImage" onChange={handleImageChange} />
-                        {imagePreviewUrl && <img src={imagePreviewUrl} alt="Book Preview" />}
+                        {imagePreviewUrl && <img style={{ marginTop: "10px", maxWidth: "150px", height: "auto", borderRadius: "8px", overflow: "hidden", boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)" }} src={imagePreviewUrl} alt="Book Preview" />}
 
                         <label>Number of Copies:</label>
                         <input type="number" name="numberOfCopies" value={bookDetails.numberOfCopies} onChange={handleChange} min="1" />

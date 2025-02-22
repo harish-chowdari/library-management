@@ -1,0 +1,113 @@
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Use min-height instead of height: full */
+  min-height: 100vh;
+  background-color: #181818;
+  padding: 20px;
+}
+
+.addPublicationContent {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  color: #fff;
+}
+
+.addPublicationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.addPublicationHeader h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.publicationDetailsFormContainer {
+  width: 100%;
+}
+
+.publicationDetailsForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.publicationDetailsForm label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #bbb;
+}
+
+.publicationDetailsForm input,
+.publicationDetailsForm textarea {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  margin-top: 8px;
+  background-color: #2a2a2a;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.publicationDetailsForm input:focus,
+.publicationDetailsForm textarea:focus {
+  border-color: #ff9800;
+  outline: none;
+  background-color: #333;
+}
+
+.publicationDetailsForm textarea {
+  resize: vertical;
+  height: 150px;
+}
+
+.publicationDetailsForm input[type="file"] {
+  padding: 5px;
+  background-color: transparent;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+
+.imagePreview {
+  margin-top: 10px;
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.imagePreview img {
+  width: 100%;
+  height: auto;
+}
+
+.publicationDetailsForm button {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #ff9800;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.publicationDetailsForm button:hover {
+  background-color: #e68900;
+}
+
+.publicationDetailsForm button:active {
+  transform: scale(0.98);
+}

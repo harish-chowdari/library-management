@@ -10,9 +10,9 @@
   transform: translateY(-5px);
 }
 
-/* .book-image {
+.book-image {
   position: relative;
-} */
+}
 
 .book-image1 img {
   width: 100%;
@@ -48,6 +48,33 @@
 .inc-dec button:hover {
   background-color: #e68900;
 }
+
+
+
+.inc-dec {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.book-cards .inc-dec button {
+  background: #ff9800;
+  border: none;
+  padding: 10px;
+  color: #121212;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.book-cards .inc-dec button:disabled {
+  background: #888;
+}
+
+.book-cards .inc-dec button:hover:not(:disabled) {
+  background: #e68900;
+}
+
 
 .edit-btn {
   position: absolute;

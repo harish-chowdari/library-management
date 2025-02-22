@@ -193,7 +193,7 @@
   background-color: #1e1e1e;
   padding: 20px;
   padding-top: 80px;
-  padding-bottom: 0;
+  padding-bottom: 250px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;

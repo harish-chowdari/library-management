@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "../../axios/axios";
-import "./AddPublication.css";
-import PopUp from "../../Components/Popups/Popup"
+import styles from "./AddPublication.module.css";
+import PopUp from "../../Components/Popups/Popup";
 import Loader from "../../Components/Loader/Loader";
 
 function AddPublication() {
@@ -30,9 +30,9 @@ function AddPublication() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreviewUrl(reader.result);
-        setBookImage(file); // Store the image file
+        setBookImage(file);
       };
-      reader.readAsDataURL(file); // Convert to a data URL for preview
+      reader.readAsDataURL(file);
     }
   };
 
@@ -42,7 +42,7 @@ function AddPublication() {
     if (!bookImage) {
       setPopUpText("Please upload an image of the book");
       setIsPopUpOpen(true);
-      return; // Ensure the image is provided
+      return;
     }
 
     const formData = new FormData();
@@ -51,24 +51,24 @@ function AddPublication() {
     formData.append("isbnNumber", publicationDetails.isbnNumber);
     formData.append("publishedDate", publicationDetails.publishedDate);
     formData.append("description", publicationDetails.description);
-    formData.append("bookImage", bookImage); // Include the image file
+    formData.append("bookImage", bookImage);
 
     try {
-      setLoading(true); // Start loading state
+      setLoading(true);
       await axios.post(
         `publication/book-publication/${publicationDetails.isbnNumber}`,
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Essential for file uploads
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-      setLoading(false); // Stop loading
+      setLoading(false);
       setPopUpText("Publication added successfully");
-      setIsPopUpOpen(true); // Show success message
+      setIsPopUpOpen(true);
 
-      // Reset the form fields after successful submission
+      // Reset the form fields after submission
       setPublicationDetails({
         bookName: "",
         authorName: "",
@@ -76,26 +76,30 @@ function AddPublication() {
         publishedDate: "",
         description: "",
       });
-      setBookImage(null); // Clear the image file
-      setImagePreviewUrl(""); // Reset the preview URL
+      setBookImage(null);
+      setImagePreviewUrl("");
     } catch (error) {
       setLoading(false);
       setPopUpText(
-        error?.response?.data?.message || "An error occurred during submission"
+        error?.response?.data?.message ||
+          "An error occurred during submission"
       );
-      setIsPopUpOpen(true); // Display error message in a pop-up
+      setIsPopUpOpen(true);
     }
   };
 
   return (
-    <div className="layout">
-      {loading && <Loader />} 
-      <div className="add-publication-content">
-        <div className="add-publication-header">
+    <div className={styles.layout}>
+      {loading && <Loader />}
+      <div className={styles.addPublicationContent}>
+        <div className={styles.addPublicationHeader}>
           <h2>Add Publication</h2>
         </div>
-        <div className="publication-details-form-container">
-          <form className="publication-details-form" onSubmit={handleSubmit}>
+        <div className={styles.publicationDetailsFormContainer}>
+          <form
+            className={styles.publicationDetailsForm}
+            onSubmit={handleSubmit}
+          >
             <label htmlFor="bookName">Book Name:</label>
             <input
               type="text"
@@ -157,7 +161,7 @@ function AddPublication() {
             />
 
             {imagePreviewUrl && (
-              <div className="image-preview">
+              <div className={styles.imagePreview}>
                 <img src={imagePreviewUrl} alt="Book Preview" />
               </div>
             )}

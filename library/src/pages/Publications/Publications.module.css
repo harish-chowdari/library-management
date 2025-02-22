@@ -1,0 +1,146 @@
+.publicationsContainer {
+  background-color: #181818;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.publicationsContent {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  color: #fff;
+}
+
+.publicationsHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.publicationsHeader h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.publicationsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.publicationItem {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.publicationItem:hover {
+  transform: translateY(-5px);
+}
+
+.publicationImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.publicationDetails {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.publicationDetails h3 {
+  font-size: 18px;
+  margin: 0;
+  color: #ff9800;
+}
+
+.publicationDetails p {
+  font-size: 14px;
+  margin: 0;
+  color: #bbb;
+}
+
+.arrowIcon {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  cursor: pointer;
+  color: #ff9800;
+  transition: transform 0.3s ease;
+}
+
+.arrowIcon:hover {
+  transform: translateX(5px);
+}
+
+/* Popup styles */
+.publicationPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 1002;
+  width: 90%;
+  max-width: 400px;
+  color: #fff;
+}
+
+.publicationPopup h3 {
+  margin-top: 0;
+}
+
+.publicationPopup input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #2a2a2a;
+  color: #fff;
+  font-size: 16px;
+}
+
+.publicationPopup button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #ff9800;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.publicationPopup button:hover {
+  background-color: #e68900;
+}
+
+.popupBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1001;
+}

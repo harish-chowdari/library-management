@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../axios/axios';
 import PopUp from '../../components/popups/popup';
 import Loader from '../../components/loader/loader';
-import './Publications.css';
+import styles from './Publications.module.css';
 import { FaArrowRight } from "react-icons/fa6";
-
-
 
 const Publications = () => {
   const [publications, setPublications] = useState([]);
@@ -15,8 +13,6 @@ const Publications = () => {
   const [fineAndCopies, setFineAndCopies] = useState({});
   const [popupVisible, setPopupVisible] = useState(false);
   const [activePublication, setActivePublication] = useState(null);
-
-
 
   const fetchPublications = async () => {
     try {
@@ -31,12 +27,10 @@ const Publications = () => {
     }
   };
 
-
   useEffect(() => {
     fetchPublications();
   }, []);
 
-  // Correctly define the handleInputChange function
   const handleInputChange = (publicationId, fieldName, value) => {
     setFineAndCopies((prevState) => ({
       ...prevState,
@@ -71,19 +65,15 @@ const Publications = () => {
         description: activePublication.description,
         fine,
         numberOfCopies,
-        bookImage: activePublication.bookImage, // Include book image
+        bookImage: activePublication.bookImage,
       };
 
-      const res = await axios.post(
-        "librarian/publish-book-by-user",
-        approveData
-      );
-
+      const res = await axios.post("librarian/publish-book-by-user", approveData);
       if (res.data.bookAdded) {
         setPopUpText('Publication approved and book added successfully.');
         setIsPopUpOpen(true);
-        const deleteRes = await axios.delete(`publication/remove-publication/${id}`)
-        fetchPublications()
+        await axios.delete(`publication/remove-publication/${id}`);
+        fetchPublications();
       }
     } catch (error) {
       setPopUpText('Error submitting publications.');
@@ -94,47 +84,42 @@ const Publications = () => {
   };
 
   return (
-    <div className="publications-container">
+    <div className={styles.publicationsContainer}>
       {loading ? (
         <Loader />
       ) : (
-        <>
-          <h2>Publications</h2>
+        <div className={styles.publicationsContent}>
+          <div className={styles.publicationsHeader}>
+            <h2>Publications</h2>
+          </div>
           {publications.length === 0 ? (
             <p>No publications found.</p>
           ) : (
-            <div className="publications-list">
+            <div className={styles.publicationsList}>
               {publications.map((publication) => (
-                <div className="publication-item" key={publication._id}>
+                <div className={styles.publicationItem} key={publication._id}>
                   <img
                     src={publication.bookImage}
                     alt={publication.bookName}
-                    className="publication-image"
+                    className={styles.publicationImage}
                   />
-
-                  <div className="publication-details">
+                  <div className={styles.publicationDetails}>
                     <h3>{publication.bookName}</h3>
                     <p><strong>Author:</strong> {publication.authorName}</p>
                     <p><strong>ISBN:</strong> {publication.isbnNumber}</p>
                     <p><strong>Published On:</strong> {publication.publishedDate}</p>
                     <p><strong>Description:</strong> {publication.description}</p>
-                  
-                  
-                    <div className='arrow-ic' onClick={() => handleProceed(publication)} >
-                      <FaArrowRight className='fa-arrow'
-                      icon="fa-solid fa-arrow-right" />
+                    <div className={styles.arrowIcon} onClick={() => handleProceed(publication)}>
+                      <FaArrowRight />
                     </div>
-                  
-                  
-                </div>
-                
+                  </div>
                 </div>
               ))}
             </div>
           )}
           {popupVisible && activePublication && (
             <>
-              <div className={`publication-popup show`}>
+              <div className={styles.publicationPopup}>
                 <h3>Approve {activePublication.bookName}</h3>
                 <input
                   type="text"
@@ -147,15 +132,12 @@ const Publications = () => {
                   min="1"
                   onChange={(e) => handleInputChange(activePublication._id, 'numberOfCopies', e.target.value)}
                 />
-                <button onClick={()=>handleApprove(activePublication._id)}>Approve</button>
+                <button onClick={() => handleApprove(activePublication._id)}>Approve</button>
               </div>
-              <div
-                className={`popup-backdrop show`}
-                onClick={() => setPopupVisible(false)}
-              />
+              <div className={styles.popupBackdrop} onClick={() => setPopupVisible(false)}></div>
             </>
           )}
-        </>
+        </div>
       )}
       <PopUp
         isOpen={isPopUpOpen}

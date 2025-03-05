@@ -78,8 +78,9 @@ const SingleBook = ({ cart, setCart }) => {
                 <hr />
               </div>
               <div className={styles.pTags}>
-                <p><span>Author:</span> {book.authorName}</p>
-                <p><span>ISBN:</span> {book.isbnNumber}</p>
+                <p><span>Category:</span> {book?.category ? book.category : 'Unknown'}</p>
+                <p><span>Author:</span> {book?.authorName}</p>
+                <p><span>ISBN:</span> {book?.isbnNumber}</p>
                 <p><span>Published:</span> {formatDate(book.publishedDate)}</p>
                 <p><span>Description:</span> {book.description}</p>
               </div>

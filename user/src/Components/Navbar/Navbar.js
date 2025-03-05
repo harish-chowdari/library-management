@@ -85,8 +85,9 @@ const Navbar = () => {
 
   const filteredBooks = searchTerm.trim() !== '' 
     ? books.filter(book =>
-        book.bookName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        book.authorName.toLowerCase().includes(searchTerm.toLowerCase())
+        book?.bookName?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+        book?.authorName?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+        book?.category?.toLowerCase().includes(searchTerm?.toLowerCase())
       ) 
     : [];
 

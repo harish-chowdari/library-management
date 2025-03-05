@@ -16,7 +16,7 @@
 }
 
 .bookImg {
-  width: 200px;
+  width: 250px;
   border-radius: 8px;
   height: 200px;
   object-fit: fill;
@@ -26,9 +26,41 @@
   text-decoration: none;
 }
 
+
+.bookCard {
+  background: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  position: relative; /* Needed for absolutely positioning children */
+}
+
+.bookCard:hover {
+  transform: translateY(-5px);
+}
+
+.availableDate {
+  position: absolute;
+  bottom: 35px;         
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #e0e0e0;
+  text-align: center;
+  /* opacity: 0;    */
+  width: 200px;        
+  transition: opacity 0.3s ease;
+  pointer-events: none; 
+}
+
+/* .bookCard:hover .availableDate {
+  opacity: 1;
+} */
+
+
 .bookTitle {
   text-align: center;
-  /* You can adjust the inner spacing as needed */
   padding: 8px;
 }
 

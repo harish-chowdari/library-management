@@ -86,7 +86,8 @@ const Navbar = () => {
   const filteredBooks = searchTerm.trim() !== '' 
     ? books.filter(book =>
         book.bookName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        book.authorName.toLowerCase().includes(searchTerm.toLowerCase())
+        book.authorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        book?.category?.toLowerCase().includes(searchTerm?.toLowerCase())
       ) 
     : [];
 
@@ -135,21 +136,21 @@ const Navbar = () => {
                     <BsCart3 size={25} /> Cart
                   </p>
                 </NavLink> */}
-                  <NavLink to={`/app/${userName}/reserved-history`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
+                  <NavLink to={`/app/${userName}/add-books`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
                     <p>
-                      <PiBooks size={25} /> Reserved Books
+                      <PiBooks size={25} /> Add Book
                     </p>
                   </NavLink>
-                  <NavLink to={`/app/${userName}/submitted-history`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
+                  <NavLink to={`/app/${userName}/reserved-users`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
                     <p>
-                      <PiBooks size={25} /> Submitted Books
+                      <PiBooks size={25} /> Reserved Users
                     </p>
                   </NavLink>
-                  <NavLink to={`/app/${userName}/publication`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
+                  {/* <NavLink to={`/app/${userName}/publication`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
                     <p>
                       <FaBook size={22} /> Book Publication
                     </p>
-                  </NavLink>
+                  </NavLink> */}
               </div>
             )}
           </div>

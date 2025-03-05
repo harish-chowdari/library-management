@@ -9,6 +9,7 @@ const EditBook = () => {
         authorName: '',
         isbnNumber: '',
         bookName: '',
+        category: '',
         publishedDate: '',
         bookImage: null,
         description: '',
@@ -59,7 +60,7 @@ const EditBook = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!bookDetails.authorName.trim() || !bookDetails.isbnNumber.trim() || !bookDetails.bookName.trim() || !bookDetails.publishedDate.trim() || !bookDetails.bookImage || !bookDetails.description.trim() || !bookDetails.fine.trim() || !bookDetails.numberOfCopies) {
+        if (!bookDetails.authorName.trim() || !bookDetails.isbnNumber.trim() || !bookDetails.bookName.trim() || !bookDetails.category.trim() || !bookDetails.publishedDate.trim() || !bookDetails.bookImage || !bookDetails.description.trim() || !bookDetails.fine.trim() || !bookDetails.numberOfCopies) {
             setPopUpText("Please fill all the fields.");
             setIsPopUpOpen(true);
             return;
@@ -97,6 +98,9 @@ const EditBook = () => {
                     <form className="book-details-form" onSubmit={handleSubmit}>
                         <label>Book Name:</label>
                         <input type="text" name="bookName" value={bookDetails.bookName} onChange={handleChange} />
+
+                        <label>Category:</label>
+                        <input type="text" name="category" value={bookDetails.category} onChange={handleChange} />
 
                         <label>Author Name:</label>
                         <input type="text" name="authorName" value={bookDetails.authorName} onChange={handleChange} />

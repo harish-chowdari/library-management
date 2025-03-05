@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axios/axios';
+import styles from './CartItem.module.css';
 
 const CartItem = ({ item, removeFromCart, reserveBook, willUseBy, handleDateChange, reservedBooks }) => {
   const [isOutOfStock, setIsOutOfStock] = useState(false); // State to track if the book is out of stock
@@ -63,40 +64,61 @@ const CartItem = ({ item, removeFromCart, reserveBook, willUseBy, handleDateChan
   };
 
   return (
-    <div>
+    <div className={styles.cartItemContainer}>
       {item.bookId && (
-        <div className="cartitems-format-main cart-items-format">
-          {item.bookId.bookImage && <img src={item.bookId.bookImage} alt={item.bookId.bookName} />}
-          {item.bookId.bookName && <p>{item.bookId.bookName}</p>}
-          {item.bookId.authorName && <p>{item.bookId.authorName}</p>}
-          <button className="remove-button" onClick={() => removeFromCart(item.bookId._id)}>Remove</button>
-
-          {/* Check if the book is already reserved */}
-          {isBookReserved ? (
-            <p style={{color:"green"}}>Reserved</p>
-          ) : (
-            // Check if the book is out of stock
-            isOutOfStock ? (
-              <p>Not Available</p>
+        <div className={styles.cartItem}>
+          <div className={styles.imageContainer}>
+            {item.bookId.bookImage && (
+              <img src={item.bookId.bookImage} alt={item.bookId.bookName} />
+            )}
+          </div>
+          <div className={styles.bookDetails}>
+            {item.bookId.bookName && (
+              <p className={styles.bookName}>{item.bookId.bookName}</p>
+            )}
+            {item.bookId.authorName && (
+              <p className={styles.authorName}>{item.bookId.authorName}</p>
+            )}
+          </div>
+          <div className={styles.actions}>
+            <button
+              className={`${styles.button} ${styles.removeButton}`}
+              onClick={() => removeFromCart(item.bookId._id)}
+            >
+              Remove
+            </button>
+            {isBookReserved ? (
+              <p className={styles.statusText} style={{ color: "#ff9800" }}>Reserved</p>
+            ) : isOutOfStock ? (
+              <p className={styles.statusText}>Not Available</p>
             ) : (
-
-                <button className="reserve-button" onClick={() => reserveBook(item.bookId._id, item.bookId.fine)}>Reserve</button>
-
-              // Display input field for date if not reserved or out of stock
-            )
-          )}
- 
-          {isOutOfStock || isBookReserved ? 
-            <p>Available On: {availableDate ? availableDate.slice(0, 10) : 'TBD'}</p>
-            :              
-            <input className='use-by-cart' type='date' value={willUseBy || ''} onChange={handleDateChange} required />
-}
-
-        </div> 
+              <button
+                className={`${styles.button} ${styles.reserveButton}`}
+                onClick={() => reserveBook(item.bookId._id, item.bookId.fine)}
+              >
+                Reserve
+              </button>
+            )}
+            {isOutOfStock || isBookReserved ? (
+              <p className={styles.availableDate}>
+                Available On: {availableDate ? availableDate.slice(0, 10) : 'TBD'}
+              </p>
+            ) : (
+              <input
+                className={styles.dateInput}
+                type="date"
+                value={willUseBy || ''}
+                onChange={handleDateChange}
+                required
+              />
+            )}
+          </div>
+        </div>
       )}
-      <hr className='bottom-hr-cart' />
+      <hr className={styles.bottomDivider} />
     </div>
   );
 };
 
 export default CartItem;
+

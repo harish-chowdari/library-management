@@ -12,9 +12,10 @@ const addBook = async (req, res) => {
     const uniqueFileName = `${uuidv4()}_${file.originalname}`;
     const response = await S3.uploadFile(process.env.AWS_BUCKET_NAME, file, uniqueFileName);
 
-    const { bookName, authorName, isbnNumber, publishedDate, description, numberOfCopies, fine } = req.body;
+    const { bookName, category, authorName, isbnNumber, publishedDate, description, numberOfCopies, fine } = req.body;
     const book = new BookModel({
       bookName,
+      category,
       authorName,
       isbnNumber,
       publishedDate, 
@@ -36,10 +37,11 @@ const editBook = async (req, res) => {
     console.log('Req Body:', req.body);
 
     const { bookId } = req.params;
-    const { bookName, authorName, isbnNumber, publishedDate, description, numberOfCopies, fine } = req.body;
+    const { bookName, category, authorName, isbnNumber, publishedDate, description, numberOfCopies, fine } = req.body;
 
     let updatedData = {
       bookName,
+      category,
       authorName,
       isbnNumber,
       publishedDate,
@@ -248,6 +250,7 @@ const getBookSuggestions = async (req, res) => {
             $or: [
                 { bookName: { $regex: searchQuery, $options: "i" } },
                 { authorName: { $regex: searchQuery, $options: "i" } },
+                { category: { $regex: searchQuery, $options: "i" } },
                 // Add more fields to search here if needed
             ]
         }).select("bookName");

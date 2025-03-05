@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios/axios';
 import Loader from '../../Components/Loader/Loader';
-import { FaStar } from 'react-icons/fa';
-import "./SubmittedBooks.css";
 import PopUp from '../../Components/Popups/Popup';
-import { useParams } from "react-router-dom";
+import { FaStar } from 'react-icons/fa';
+import styles from './SubmittedBooks.module.css';
+import { useParams } from 'react-router-dom';
 
 const SubmittedBooks = () => {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [popUpText, setPopUpText] = useState("");
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [feedbackTexts, setFeedbackTexts] = useState({});
   const [feedbackRatings, setFeedbackRatings] = useState({});
-  const [showFeedbackInput, setShowFeedbackInput] = useState({});
+  const [flipped, setFlipped] = useState({});
   const userId = localStorage.getItem("userId");
   const { userName } = useParams();
 
@@ -23,16 +23,15 @@ const SubmittedBooks = () => {
         const response = await axios.get(`submit/get-submissions/${userId}`);
         if (response.data?.submissions?.items) {
           setSubmissions(response.data.submissions.items);
-          setLoading(false);
         } else {
           setPopUpText("No submissions found");
           setIsPopUpOpen(true);
-          setLoading(false);
         }
       } catch (error) {
-        console.error('Error fetching submissions:', error);
+        console.error("Error fetching submissions:", error);
         setPopUpText("Error fetching submissions");
         setIsPopUpOpen(true);
+      } finally {
         setLoading(false);
       }
     };
@@ -40,19 +39,22 @@ const SubmittedBooks = () => {
     fetchSubmissions();
   }, [userId]);
 
-  const submitFeedback = async (bookName, authorName, bookId) => {
-    try {
-      const feedback = feedbackTexts[`${bookName}-${authorName}`] || "";
-      const rating = feedbackRatings[`${bookName}-${authorName}`] || 0;
+  const toggleFlip = (key) => {
+    setFlipped(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
-      if (feedback.trim() === "") {
+  const submitFeedback = async (bookId, key) => {
+    try {
+      const feedback = feedbackTexts[key] || "";
+      const rating = feedbackRatings[key] || 0;
+
+      if (!feedback.trim()) {
         setPopUpText("Please provide feedback before submitting.");
         setIsPopUpOpen(true);
         return;
       }
-
       if (rating === 0) {
-        setPopUpText("Please provide rating before submitting.");
+        setPopUpText("Please provide a rating.");
         setIsPopUpOpen(true);
         return;
       }
@@ -66,121 +68,102 @@ const SubmittedBooks = () => {
 
       if (response.data.alreadySubmitted) {
         setPopUpText(response.data.alreadySubmitted);
-        setIsPopUpOpen(true);
       } else if (response.data.bookNotFound) {
         setPopUpText(response.data.bookNotFound);
-        setIsPopUpOpen(true);
       } else {
         setPopUpText("Feedback submitted successfully.");
-        setIsPopUpOpen(true);
       }
-
-      setShowFeedbackInput((prevState) => ({
-        ...prevState,
-        [`${bookName}-${authorName}`]: false,
-      }));
+      setIsPopUpOpen(true);
+      toggleFlip(key); // Flip the card back after submitting
     } catch (error) {
-      console.error('Error submitting feedback:', error);
+      console.error("Error submitting feedback:", error);
       setPopUpText("An error occurred while submitting feedback.");
       setIsPopUpOpen(true);
     }
   };
 
-  const updateFeedbackText = (bookName, authorName, text) => {
-    setFeedbackTexts((prevState) => ({
-      ...prevState,
-      [`${bookName}-${authorName}`]: text,
-    }));
+  const updateFeedbackText = (key, text) => {
+    setFeedbackTexts(prev => ({ ...prev, [key]: text }));
   };
 
-  const updateRating = (bookName, authorName, rating) => {
-    setFeedbackRatings((prevState) => ({
-      ...prevState,
-      [`${bookName}-${authorName}`]: rating,
-    }));
+  const updateRating = (key, rating) => {
+    setFeedbackRatings(prev => ({ ...prev, [key]: rating }));
   };
 
   return (
-    <div className="submission-container">
-      <div className='submission-img'></div>
-      {submissions.length === 0 ? <h2>Submissions are empty</h2> : <h2>Submitted Books</h2>}
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h2>Submitted Books</h2>
+        <p>Flip the card to share your feedback!</p>
+      </div>
       {loading ? (
         <Loader />
       ) : submissions.length === 0 ? (
-        <p></p>
+        <div className={styles.emptyMessage}>No submissions available.</div>
       ) : (
-        <div className='submission-division'>
-          <div className='submissionitems-format-main submission-headings'>
-            <h3>Book</h3> 
-            <h3>Name</h3>
-            <h3>Author</h3>
-            <h3>ISBN</h3>
-            <h3>Submitted</h3>
-            <h3>Description</h3> 
-            <h3>Feedback</h3>
-          </div>
-          {submissions.map((item, index) => (
-            <div className='Main-div-submission' key={index}>
-              <div className="submissionitems-format-main submission-items-format">
-                <img src={item.bookImage} alt={item.bookName} />
-                <p>{item.bookName}</p>
-                <p>{item.authorName}</p> 
-                <p>{item.isbnNumber}</p>
-                <p>{item.submittedOn.slice(0, 10)}</p>
-                <p>{item.description}</p>
-                {!showFeedbackInput[`${item.bookName}-${item.authorName}`] ? (
-                  <button className='write-btn'
-                    onClick={() => setShowFeedbackInput((prevState) => ({
-                      ...prevState,
-                      [`${item.bookName}-${item.authorName}`]: true,
-                    }))}>
-                    Write Feedback
-                  </button>
-                ) : (
-                  <div className="feedback-overlay" onClick={() => {
-                    setShowFeedbackInput((prevState) => ({
-                      ...prevState,
-                      [`${item.bookName}-${item.authorName}`]: false,
-                    }));
-                  }}>
-                    <div className="feedback-div" onClick={(e) => e.stopPropagation()}>
-                    <p className='pop'>{item.bookName}</p>
-                      <textarea autoFocus
-                        placeholder='Give Feedback...'
-                        value={feedbackTexts[`${item.bookName}-${item.authorName}`] || ""}
-                        onChange={(e) => updateFeedbackText(item.bookName, item.authorName, e.target.value)}
+        <div className={styles.cardGrid}>
+          {submissions.map((item, index) => {
+            const key = `${item.bookName}-${item.authorName}`;
+            return (
+              <div className={styles.flipCard} key={index}>
+                <div className={`${styles.flipCardInner} ${flipped[key] ? styles.flipped : ''}`}>
+                  {/* Front Side */}
+                  <div className={styles.flipCardFront}>
+                    <div className={styles.cardContent}>
+                      <div className={styles.imageSection}>
+                        {item.bookImage ? (
+                          <img src={item.bookImage} alt={item.bookName} className={styles.bookImage} />
+                        ) : (
+                          <div className={styles.imagePlaceholder}>No Image</div>
+                        )}
+                      </div>
+                      <div className={styles.infoSection}>
+                        <h3 className={styles.bookName}>{item.bookName}</h3>
+                        <p className={styles.authorName}>by {item.authorName}</p>
+                        <p className={styles.isbn}>ISBN: {item.isbnNumber}</p>
+                        <p className={styles.submittedOn}>Submitted: {item.submittedOn.slice(0, 10)}</p>
+                        <p className={styles.description}>{item.description}</p>
+                      </div>
+                    </div>
+                    <button className={styles.flipButton} onClick={() => toggleFlip(key)}>
+                      Give Feedback
+                    </button>
+                  </div>
+                  {/* Back Side */}
+                  <div className={styles.flipCardBack}>
+                    <div className={styles.feedbackForm}>
+                      <h3 className={styles.feedbackTitle}>Feedback for {item.bookName}</h3>
+                      <textarea
+                        className={styles.feedbackInput}
+                        placeholder="Your feedback..."
+                        value={feedbackTexts[key] || ""}
+                        onChange={(e) => updateFeedbackText(key, e.target.value)}
                       />
-                      <div className="star-rating">
-                        {[1, 2, 3, 4, 5].map((star) => (
+                      <div className={styles.rating}>
+                        {[1, 2, 3, 4, 5].map(star => (
                           <FaStar
                             key={star}
-                            color={
-                              (feedbackRatings[`${item.bookName}-${item.authorName}`] || 0) >= star ? 'gold' : 'gray'
-                            }
-                            onClick={() => updateRating(item.bookName, item.authorName, star)}
-                            style={{ cursor: 'pointer' }}
+                            className={styles.starIcon}
+                            color={(feedbackRatings[key] || 0) >= star ? "#ffb400" : "#444"}
+                            onClick={() => updateRating(key, star)}
                           />
                         ))}
                       </div>
-                      <button
-                        className='submit-btn'
-                        onClick={() => submitFeedback(item.bookName, item.authorName, item.bookId)}
-                      >
-                        Submit
+                      <button className={styles.submitButton} onClick={() => submitFeedback(item.bookId, key)}>
+                        Submit Feedback
+                      </button>
+                      <button className={styles.backButton} onClick={() => toggleFlip(key)}>
+                        Back
                       </button>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
-      <PopUp
-        isOpen={isPopUpOpen}
-        close={() => setIsPopUpOpen(false)}
-        text={popUpText}
-      />
+      <PopUp isOpen={isPopUpOpen} close={() => setIsPopUpOpen(false)} text={popUpText} />
     </div>
   );
 };

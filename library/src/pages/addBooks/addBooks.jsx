@@ -11,6 +11,7 @@ function AddBooks() {
         authorName: '',
         isbnNumber: '',
         bookName: '',
+        category: '',
         publishedDate: '',
         bookImage: null,
         description: '',
@@ -62,12 +63,13 @@ function AddBooks() {
         formData.append('authorName', bookDetails.authorName);
         formData.append('isbnNumber', bookDetails.isbnNumber);
         formData.append('bookName', bookDetails.bookName);
+        formData.append('category', bookDetails.category);
         formData.append('publishedDate', bookDetails.publishedDate);
         formData.append('bookImage', bookDetails.bookImage);
         formData.append('description', bookDetails.description);
         formData.append('fine', bookDetails.fine);
         formData.append('numberOfCopies', bookDetails.numberOfCopies); // Append number of copies to the form data
-        if (!bookDetails.authorName?.trim() || !bookDetails.isbnNumber?.trim() || !bookDetails.bookName?.trim() || !bookDetails.publishedDate?.trim() || !bookDetails.bookImage || !bookDetails.description?.trim() || !bookDetails.fine?.trim() || !bookDetails.numberOfCopies) {
+        if (!bookDetails.authorName?.trim() || !bookDetails.isbnNumber?.trim() ||  !bookDetails.bookName?.trim() || !bookDetails.category?.trim() || !bookDetails.publishedDate?.trim() || !bookDetails.bookImage || !bookDetails.description?.trim() || !bookDetails.fine?.trim() || !bookDetails.numberOfCopies) {
             setpopUpText("Please fill all the fields.");
             setIsPopUpOpen(true);
             return;
@@ -88,6 +90,7 @@ function AddBooks() {
                 authorName: '',
                 isbnNumber: '',
                 bookName: '',
+                category: '',
                 publishedDate: '',
                 bookImage: null,
                 description: '',
@@ -125,6 +128,16 @@ function AddBooks() {
         id="bookName"
         name="bookName"
         value={bookDetails.bookName}
+        onChange={handleChange}
+        
+    />
+
+    <label htmlFor="category">Category:</label>
+    <input
+        type="text"
+        id="category"
+        name="category"
+        value={bookDetails.category}
         onChange={handleChange}
         
     />

@@ -30,7 +30,7 @@
  .book-cards-container {
    display: flex;
    flex-wrap: wrap;
-   justify-content: space-around;
+   justify-content: start;
  }
  
  .book-cards {
@@ -178,7 +178,7 @@
 /* Sort Controls */
 .sort-controls {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   margin-bottom: 20px;
 }

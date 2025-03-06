@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { FaSortAlphaDown, FaSortAlphaUp } from 'react-icons/fa';
 import "./home.css";
 import BookCard from '../../components/bookCard/bookCard';
 import axios from '../../axios/axios';
@@ -11,7 +12,7 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOrder, setSortOrder] = useState('asc');
-    const booksPerPage = 5;
+    const booksPerPage = 8;
 
     const fetchBooks = async () => {
         setLoading(true);
@@ -53,17 +54,16 @@ const Home = () => {
                         className="sort-btn"
                         disabled={sortOrder === 'asc'}
                     >
-                        Sort Ascending
+                        <FaSortAlphaDown />
                     </button>
                     <button
                         onClick={() => { setSortOrder('desc'); setCurrentPage(1); }}
                         className="sort-btn"
                         disabled={sortOrder === 'desc'}
                     >
-                        Sort Descending
+                        <FaSortAlphaUp />
                     </button>
                 </div>
-
 
                 {loading ? (
                     <Loader />

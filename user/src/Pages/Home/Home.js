@@ -10,7 +10,7 @@ const Home = () => {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const booksPerPage = 5;
+    const booksPerPage = 8;
 
     const fetchBooks = async () => {
         setLoading(true);

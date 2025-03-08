@@ -99,7 +99,9 @@ const BookCard = ({ title, imageUrl, id }) => {
     <div className={styles.bookCard}>
       <div className={styles.stockDiv}>
         {isOutOfStock && (
-          <img src={stock} className={styles.outOfStock} alt="Out of Stock" />
+          <p src={stock} className={styles.outOfStock} alt="Out of Stock" >
+            Out of Stock
+          </p>
         )}
       </div>
       <div className={styles.bookImage}>

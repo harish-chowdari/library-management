@@ -138,7 +138,7 @@ const Navbar = () => {
             {menuOpen && (
               <div className={styles.menuItems}>
               {/* cart */}
-                <NavLink to={`/app/${userName}/cart`} className={styles.menuNavLink}>
+                <NavLink to={`/app/${userName}/cart`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
                   <p>
                     <BsCart3 size={25} /> Cart
                   </p>

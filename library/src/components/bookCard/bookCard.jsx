@@ -86,30 +86,34 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
   }, [show]);
 
   return (
-    <div onClick={() => {
-        if (reserveCount === 0) {
-          setShow(!show);
-        }
-      }}
+    <div 
       style={{cursor: 'pointer'}}
       className="book-card">
       <div className="book-image1">
         <img
+          onClick={() => {
+        if (reserveCount === 0) {
+          setShow(!show);
+        }
+      }}
           src={imageUrl}
           alt={title.toUpperCase()}
         />
         <div className="book-div">
-          {show && 
+           
             <div className='edit-delete'>
               <button onClick={() => navigate(`/app/${userName}/edit-book/${id}`)} className='edit-btn'>
                 Edit
               </button>
+              {show &&
               <button className="dlt-btn" onClick={handleDelete}>
                 Delete
               </button>
+              }
             </div>
+              
           
-          }
+          
           </div>
         <div className="home-count" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', gap:'5px'}}>
         <h2 className="book-author">{title}</h2>

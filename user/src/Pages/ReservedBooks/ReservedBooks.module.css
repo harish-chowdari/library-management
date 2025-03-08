@@ -27,8 +27,8 @@
 /* Grid container for cards */
 .cardGrid {
   display: grid;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }

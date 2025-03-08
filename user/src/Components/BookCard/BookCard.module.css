@@ -74,7 +74,6 @@
 .outOfStock {
   /* width: 40px; Adjust size as needed */
   height: auto;
-  rotate: 11deg;
   opacity: 0.9;
   background-color: #f01a1a;
   color: white;
@@ -85,7 +84,6 @@
   top: -10px;
   border-radius: 50px;
   padding: 0px 10px;
-  transform: rotate(-10deg); /* Optional tilted effect */
 }
 
 .availableDate {

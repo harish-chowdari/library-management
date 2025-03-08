@@ -94,15 +94,15 @@ const SubmittedBooks = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2>Submitted Books</h2>
-        <p>Flip the card to share your feedback!</p>
+        {submissions?.length > 0 && <p>Flip the card to share your feedback!</p>}
       </div>
       {loading ? (
         <Loader />
-      ) : submissions.length === 0 ? (
+      ) : submissions?.length === 0 ? (
         <div className={styles.emptyMessage}>No submissions available.</div>
       ) : (
         <div className={styles.cardGrid}>
-          {submissions.map((item, index) => {
+          {submissions?.map((item, index) => {
             const key = `${item.bookName}-${item.authorName}`;
             return (
               <div className={styles.flipCard} key={index}>

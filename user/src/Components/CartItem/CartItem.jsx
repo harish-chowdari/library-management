@@ -87,18 +87,6 @@ const CartItem = ({ item, removeFromCart, reserveBook, willUseBy, handleDateChan
             >
               Remove
             </button>
-            {isBookReserved ? (
-              <p className={styles.statusText} style={{ color: "#ff9800" }}>Reserved</p>
-            ) : isOutOfStock ? (
-              <p className={styles.statusText}>Not Available</p>
-            ) : (
-              <button
-                className={`${styles.button} ${styles.reserveButton}`}
-                onClick={() => reserveBook(item.bookId._id, item.bookId.fine)}
-              >
-                Reserve
-              </button>
-            )}
             {isOutOfStock || isBookReserved ? (
               <p className={styles.availableDate}>
                 Available On: {availableDate ? availableDate.slice(0, 10) : 'TBD'}
@@ -112,10 +100,22 @@ const CartItem = ({ item, removeFromCart, reserveBook, willUseBy, handleDateChan
                 required
               />
             )}
+            {isBookReserved ? (
+              <p className={styles.statusText} style={{ color: "#ff9800" }}>Reserved</p>
+            ) : isOutOfStock ? (
+              <p className={styles.statusText}>Not Available</p>
+            ) : (
+              <button
+                className={`${styles.button} ${styles.reserveButton}`}
+                onClick={() => reserveBook(item.bookId._id, item.bookId.fine)}
+              >
+                Reserve
+              </button>
+            )}
+            
           </div>
         </div>
       )}
-      <hr className={styles.bottomDivider} />
     </div>
   );
 };

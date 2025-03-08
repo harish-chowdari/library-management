@@ -67,7 +67,7 @@ const ReservedUsers = () => {
         </h2>
       ) : (
         <>
-          <h2>Reserved Users</h2>
+          <h2>Manage Submissions</h2>
           <hr />
           <input
             autoFocus

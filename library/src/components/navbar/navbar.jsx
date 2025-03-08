@@ -143,7 +143,7 @@ const Navbar = () => {
                   </NavLink>
                   <NavLink to={`/app/${userName}/reserved-users`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
                     <p>
-                      <PiBooks size={25} /> Reserved Users
+                      <PiBooks size={25} /> Manage Submissions
                     </p>
                   </NavLink>
                   {/* <NavLink to={`/app/${userName}/publication`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>

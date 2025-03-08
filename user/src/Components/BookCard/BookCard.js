@@ -118,10 +118,11 @@ const BookCard = ({ title, imageUrl, id }) => {
         )}
       </div>
       <div className={styles.bookRating}>
-        <p>
-          {renderStars(averageRating)}
-        </p>
+        {feedbacks?.length > 0 && (
+          <p>{renderStars(averageRating)}</p>
+        )}
       </div>
+
     </div>
   );
 };

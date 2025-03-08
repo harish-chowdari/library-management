@@ -114,7 +114,7 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
         <div className="home-count" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', gap:'5px'}}>
         <h2 className="book-author">{title}</h2>
           <p>
-            {remainingCopies}/{Copies}
+            Available ({remainingCopies})/({Copies}) Total 
           </p>
         </div>
 

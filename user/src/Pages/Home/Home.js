@@ -36,7 +36,7 @@ const Home = () => {
         <div className='layout'>
             <div className='bg-img'></div>
             <div className="content">
-                {books.length === 0 ? <h3>Books List is empty</h3> : <h3>Lists of Books</h3>}
+                {books?.length === 0 ? <h3>Books List is empty</h3> : <h3>Lists of Books</h3>}
                 {loading ? (
                     <Loader />
                 ) : (

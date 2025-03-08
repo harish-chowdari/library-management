@@ -41,6 +41,13 @@
   padding: 8px 16px;
   color: #121212;
   border-radius: 5px;
+  height: 20px;
+  width: 40px;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -54,7 +61,7 @@
 .inc-dec {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 0px;
 }
 
 .book-cards .inc-dec button {

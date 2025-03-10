@@ -105,11 +105,10 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
               <button onClick={() => navigate(`/app/${userName}/edit-book/${id}`)} className='edit-btn'>
                 Edit
               </button>
-              {show &&
-              <button className="dlt-btn" onClick={handleDelete}>
+              
+              { reserveCount === 0 && <button className="dlt-btn" onClick={handleDelete}>
                 Delete
-              </button>
-              }
+              </button>}
             </div>
               
           

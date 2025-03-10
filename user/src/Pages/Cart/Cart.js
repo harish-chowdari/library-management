@@ -3,7 +3,7 @@ import axios from '../../axios/axios';
 import Loader from '../../Components/Loader/Loader';
 import PopUp from '../../Components/Popups/Popup';
 import CartItem from '../../Components/CartItem/CartItem';
-import './Cart.css';
+import styles from './Cart.module.css';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -12,9 +12,8 @@ const Cart = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [popUpText, setPopUpText] = useState("");
   const [willUseByMap, setWillUseByMap] = useState({});
-  const [reservedBooks, setReservedBooks] = useState([]);
+  // const [reservedBooks, setReservedBooks] = useState([]); // if needed
 
-  // Function to fetch cart items
   async function fetchCartItems() {
     try {
       const res = await axios.get(`cart/get-cart/${userId}`);
@@ -35,7 +34,6 @@ const Cart = () => {
     fetchCartItems();
   }, [userId]);
 
-  // Function to remove a book from the cart
   const removeFromCart = async (bookId) => {
     try {
       setLoading(true);
@@ -51,7 +49,6 @@ const Cart = () => {
     }
   };
 
-  // Function to reserve a book
   const reserveBook = async (bookId, fine) => {
     try {
       setLoading(true);
@@ -82,8 +79,6 @@ const Cart = () => {
         setPopUpText("This book is reserved for you");
         setIsPopUpOpen(true);
       }
-
-      console.log(reserveResponse.data);
     } catch (error) {
       console.error('Error reserving book:', error);
     } finally {
@@ -91,7 +86,6 @@ const Cart = () => {
     }
   };
 
-  // Function to handle date change
   const handleDateChange = (event, bookId) => {
     setWillUseByMap(prevState => ({
       ...prevState,
@@ -100,30 +94,42 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart-wrapper">
-      <div className="cart-header">
+    <div className={styles.cartWrapper}>
+      <div className={styles.cartHeader}>
         <h1>Your Book Cart</h1>
-        <p>Review and manage your selected books.</p>
+        { cartItems?.length > 0 && <p>Review and manage your selected books.</p>}
       </div>
       {loading ? (
         <Loader />
-      ) : cartItems.length === 0 ? (
-        <div className="empty-cart-message">
+      ) : cartItems?.length === 0 ? (
+        <div className={styles.emptyCart}>
           <p>Your cart is empty.</p>
         </div>
       ) : (
-        <div className="cart-grid">
-          {cartItems.map((item, index) => (
-            <CartItem
-              key={index}
-              item={item}
-              removeFromCart={removeFromCart}
-              reserveBook={reserveBook}
-              willUseBy={willUseByMap[item.bookId._id]}
-              handleDateChange={(event) => handleDateChange(event, item.bookId._id)}
-              reservedBooks={reservedBooks}
-            />
-          ))}
+        <div className={styles.tableWrapper}>
+          <table className={styles.cartTable}>
+            <thead>
+              <tr>
+                <th className={styles.headerCell}>Book Image</th>
+                <th className={styles.headerCell}>Name</th>
+                <th className={styles.headerCell}>Will Use By</th>
+                <th className={styles.headerCell}>Reserve</th>
+                <th className={styles.headerCell}>Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartItems.map((item, index) => (
+                <CartItem
+                  key={index}
+                  item={item}
+                  removeFromCart={removeFromCart}
+                  reserveBook={reserveBook}
+                  willUseBy={willUseByMap[item.bookId._id]}
+                  handleDateChange={(event) => handleDateChange(event, item.bookId._id)}
+                />
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
       <PopUp

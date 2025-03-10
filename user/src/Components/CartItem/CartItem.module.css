@@ -1,135 +1,69 @@
-/* Dark theme styling for CartItem */
-
-/* Main container card */
-.cartItemContainer {
-  background: #1e1e1e;
-  border: 1px solid #444;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  margin: 1rem 0;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 350px;
+.cartItemRow {
+  transition: background-color 0.3s ease;
 }
 
-.cartItemContainer:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(255, 152, 0, 0.2);
-  border-color: #ff9800;
+.cartItemRow:hover {
+  background-color: #2b2b2b;
 }
 
-/* Layout for the cart item row */
-.cartItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 340px;
+.tdCell {
+  padding: 10px 15px;
+  vertical-align: middle;
+  color: #fff;
 }
 
-/* Book image container */
-.imageContainer {
-  flex: 0 0 80px;
-  margin-right: 1rem;
+.bookImage {
+  width: 50px;
+  height: auto;
+  border-radius: 8px;
 }
 
-.imageContainer img {
-  width: 80px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid #444;
+.dateInput {
+  padding: 6px 8px;
+  border: 1px solid #ff9800;
+  border-radius: 5px;
+  background-color: #1f1f1f;
+  color: #fff;
 }
 
-/* Book details (name and author) */
-.bookDetails {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  color: #e0e0e0;
-  margin-right: 5px;
-}
-
-.bookName {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
-}
-
-.authorName {
-  font-size: 1rem;
-  color: #888;
-  margin-bottom: 0.5rem;
-}
-
-/* Container for buttons and inputs */
-.actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-/* Common button styling */
-.button {
+.reserveButton {
+  background-color: #ff9800;
+  color: #121212;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.9rem;
   transition: background-color 0.3s ease;
-  margin-bottom: 0.5rem;
-}
-
-/* Remove button styling */
-.removeButton {
-  background-color: #e74c3c;
-  color: #fff;
-}
-
-.removeButton:hover {
-  background-color: #c0392b;
-}
-
-/* Reserve button styling */
-.reserveButton {
-  background-color: #3498db;
-  color: #fff;
 }
 
 .reserveButton:hover {
-  background-color: #2980b9;
+  background-color: #e68900;
 }
 
-/* Status text for reserved or not available */
-.statusText {
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-/* Text for available date */
-.availableDate {
-  font-size: 0.8rem;
-  color: #aaa;
-  margin-top: 0.5rem;
-}
-
-/* Date input field styling */
-.dateInput {
-  padding: 0.4rem;
-  border: 1px solid #444;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  margin-bottom: 15px;
-  background-color: #2a2a2a;
-  color: #e0e0e0;
-}
-
-/* Divider at the bottom of the card */
-.bottomDivider {
+.removeButton {
+  background-color: #f44336;
+  color: #fff;
   border: none;
-  border-top: 1px solid #444;
-  margin-top: 1rem;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.removeButton:hover {
+  background-color: #d32f2f;
+}
+
+.statusText {
+  font-weight: bold;
+  color: #ff9800;
+}
+
+.statusTextNotAvailable {
+  font-weight: bold;
+  color: #f44336;
+}
+
+.availableDate {
+  color: #fff;
 }

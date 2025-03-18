@@ -76,7 +76,7 @@ const Cart = () => {
         setIsPopUpOpen(true);
       } else {
         fetchCartItems();
-        setPopUpText("This book is reserved for you");
+        setPopUpText(`This book is reserved for you. If you are not able to give this book back by ${selectedDate}, you will be fined of $${fine}.`);
         setIsPopUpOpen(true);
       }
     } catch (error) {

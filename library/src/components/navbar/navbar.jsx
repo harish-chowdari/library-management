@@ -72,6 +72,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     window.location.href = "/login";
+    localStorage.removeItem("librarianId");
   };
 
   const handleSearchChange = (e) => {

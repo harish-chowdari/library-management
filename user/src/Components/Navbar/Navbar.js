@@ -72,6 +72,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     window.location.href = "/login";
+    localStorage.removeItem("userId");
   };
 
   const handleSearchChange = (e) => {
@@ -153,11 +154,11 @@ const Navbar = () => {
                       <PiBooks size={25} /> Submitted Books
                     </p>
                   </NavLink>
-                  <NavLink to={`/app/${userName}/publication`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
+                  {/* <NavLink to={`/app/${userName}/publication`} onClick={() => setMenuOpen(false)} className={styles.menuNavLink}>
                     <p>
                       <FaBook size={22} /> Book Publication
                     </p>
-                  </NavLink>
+                  </NavLink> */}
               </div>
             )}
           </div>

@@ -16,7 +16,8 @@ const allowedDomains=[
     "http://localhost:3003", 
     "http://localhost:3004", 
     "http://localhost:3005",
-    "https://library-management-alpha-swart.vercel.app" 
+    "https://library-management-alpha-swart.vercel.app",
+    "https://library-management-7xaa.vercel.app"
 ]
 
 // app.use(cors());

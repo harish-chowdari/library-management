@@ -32,21 +32,23 @@ async function getAllReserved(req, res) {
 
 
 
-
-const checkReserved = async () => { // This function doesn't need `req` or `res`
+// Modified checkReserved function to find overdue reservations
+const checkReserved = async () => {
   try {
+    // Current date in UTC
     const currentDate = moment.utc().format("YYYY-MM-DD");
     
     // Fetch all reserved books
     const allReserve = await getAllReserved();
 
     if (!Array.isArray(allReserve) || allReserve.length === 0) {
-      return { message: "No reserved books found" }; // Return a plain object
+      return { message: "No reserved books found" };
     }
 
+    // Filter items where willUseBy is before today (i.e. overdue)
     const matchingReservations = allReserve.map((reservation) => {
       const matchingItems = reservation.items.filter(
-        (item) => moment.utc(item.willUseBy).format("YYYY-MM-DD") === currentDate
+        (item) => moment.utc(item.willUseBy).isBefore(moment.utc(), 'day')
       );
 
       return {
@@ -59,51 +61,32 @@ const checkReserved = async () => { // This function doesn't need `req` or `res`
 
     if (matchingReservations.length > 0) {
       return {
-        message: "Reservations found for today",
+        message: "Overdue reservations found",
         reservations: matchingReservations,
       };
-    } 
-    
-   
-
-    else {
-      return { NoReservations: "No reservations found for today" }; // Handle no reservations case
+    } else {
+      return { NoReservations: "No overdue reservations found for today" };
     }
   } catch (error) {
     console.error("Error while checking reservations:", error);
-    throw error; // Ensure errors propagate properly
+    throw error;
   }
 };
 
-
-
-
-
-
-
-
+// Modified sendEmail function with updated email content
 const sendEmail = async (req, res) => {
   try {
-    // Fetch the reservations for today from the check-reservation endpoint
+    // Fetch overdue reservations from checkReserved function
     const reservationsResponse = await checkReserved();
-
-
-
     const reservations = reservationsResponse.reservations;
 
     if (!reservations || reservations.length === 0) {
-      
-      return { noReservations: "No reservations found for today." }
-      
+      return { noReservations: "No overdue reservations found for today." };
     }
 
-
-    if (!reservationsResponse || !reservationsResponse.reservations ) {
-      
-      return { error: "Failed to retrieve reservations." }
+    if (!reservationsResponse || !reservationsResponse.reservations) {
+      return { error: "Failed to retrieve reservations." };
     }
-
-    
 
     const config = {
       service: "gmail",
@@ -114,7 +97,6 @@ const sendEmail = async (req, res) => {
     };
 
     const transporter = nodemailer.createTransport(config);
-
     const currentDateStart = moment.utc().startOf("day").toDate();
 
     for (const reservation of reservations) {
@@ -128,62 +110,44 @@ const sendEmail = async (req, res) => {
 
       let newBookIds = [];
       if (existingRecord) {
-        // Get book IDs already stored in the existing record for the current date
+        // Get already sent book IDs
         const existingBookIds = existingRecord.items.map((item) => item.bookId.toString());
-
-        // Identify new book IDs in the matching items
         newBookIds = matchingItems
           .map((item) => item.bookId._id.toString())
           .filter((bookId) => !existingBookIds.includes(bookId));
       } else {
-        // If there's no existing record, consider all `matchingItems` as new
         newBookIds = matchingItems.map((item) => item.bookId._id.toString());
       }
 
       if (newBookIds.length > 0) {
-        // Build the email content
+        // Build the overdue email content
         const mailContent = `
           <!DOCTYPE html>
           <html lang="en">
           <head>
             <meta charset="UTF-8">
-            <title>Reminder: Books Due Today</title>
+            <title>Overdue Books Notice</title>
             <style>
-              body {
-                font-family: Arial, sans-serif;
-                background-color: #f7f7f7;
-                padding: 20px;
-              }
-              .container {
-                background-color: #ffffff;
-                border-radius: 5px;
-                padding: 20px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-              }
-              h1 {
-                color: #333;
-              }
-              p {
-                color: #666;
-              }
-              .details {
-                background-color: #f0f0f0;
-                padding: 10px;
-                border-radius: 5px;
-              }
+              body { font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px; }
+              .container { background-color: #ffffff; border-radius: 5px; padding: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+              h1 { color: #333; }
+              p { color: #666; }
+              ul { list-style: none; padding: 0; }
+              li { margin-bottom: 10px; }
             </style>
           </head>
           <body>
             <div class="container">
-              <h1>Reminder</h1>
+              <h1>Overdue Books Notice</h1>
               <p>Dear ${userName},</p>
-              <p>Today is the last day to return these books:</p>
+              <p>The following book(s) are overdue (they were due on the listed date) and may incur a fine:</p>
               <ul>
                 ${matchingItems
                   .filter((item) => newBookIds.includes(item.bookId._id.toString()))
-                  .map((item) => `<li>${item.bookId.bookName}</li>`)
+                  .map((item) => `<li>${item.bookId.bookName} - Due on ${moment.utc(item.willUseBy).format("YYYY-MM-DD")}</li>`)
                   .join("")}
               </ul>
+              <p>Please return the overdue items as soon as possible to avoid additional fines.</p>
             </div>
           </body>
           </html>
@@ -192,25 +156,23 @@ const sendEmail = async (req, res) => {
         const message = {
           from: process.env.EMAIL_USER,
           to: userEmail,
-          subject: "Reminder: Books Due Today",
+          subject: "Overdue Books Notice",
           html: mailContent,
         };
 
         // Send the email
         await transporter.sendMail(message);
 
-        // Add new book IDs to the email history
+        // Update or create the email history record
         if (existingRecord) {
-          // Update existing record
-          for (const bookId of newBookIds) {
+          newBookIds.forEach((bookId) => {
             existingRecord.items.push({
               bookId,
               createdDate: currentDateStart,
             });
-          }
+          });
           await existingRecord.save();
         } else {
-          // Create new record if there's none for today
           const newRecord = new EmailsSentSchema({
             userId,
             items: newBookIds.map((bookId) => ({
@@ -223,12 +185,13 @@ const sendEmail = async (req, res) => {
       }
     }
 
-    return { message: "Emails sent successfully." }
+    return { message: "Overdue email notifications sent successfully." };
   } catch (error) {
     console.error("Error sending emails:", error);
     return res.status(500).json({ error: "An error occurred while sending emails." });
   }
 };
+
 
 
 

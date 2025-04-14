@@ -1,258 +1,196 @@
+/* Navbar.module.css */
+
+/* Sticky navbar */
 .navbar {
-  background: #1e1e1e;
-  padding: 15px 20px;
+  background: var(--nav-bg);
+  color:      var(--nav-text);
+  padding:    15px 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-radius: 0 0 0px 0px;
+  position:   sticky;
+  top:        0;
+  z-index:    1000;
 }
 
+/* Right‑aligned links */
 .navLinks {
-  display: flex;
+  display:        flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items:    center;
 }
 
+/* Optional user/profile area */
 .userDiv {
-  display: flex;
+  display:     flex;
   align-items: center;
-  gap: 20px;
+  gap:         20px;
 }
 
+/* Logo, search, menu row */
 .logoDiv {
-  display: flex;
-  align-items: center;
+  display:         flex;
+  align-items:     center;
   justify-content: space-between;
-  margin-top: 10px;
-  flex-wrap: wrap;
+  margin-top:      10px;
+  flex-wrap:       wrap;
 }
 
+/* Logo image */
 .logoDiv img {
-  height: 50px;
+  height:        50px;
   border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  box-shadow:    0 3px 10px rgba(0, 0, 0, 0.2);
+  transition:    transform 0.3s ease;
 }
-
 .logoDiv img:hover {
   transform: scale(1.05);
 }
 
+/* Search input */
 .searchFilter {
-  flex: 1;
-  max-width: 500px;
-  padding: 12px 20px;
-  border: 1px solid #444;
-  border-radius: 5px;
-  background-color: #2a2a2a;
-  color: #e0e0e0;
-  font-size: 14px;
-  transition: all 0.3s;
-  margin: 0 20px;
+  flex:           1;
+  max-width:      500px;
+  padding:        12px 20px;
+  border:         1px solid var(--border-color);
+  border-radius:  5px;
+  background:     var(--input-bg);
+  color:          var(--text-color);
+  font-size:      14px;
+  transition:     all 0.3s;
+  margin:         0 20px;
 }
-
 .searchFilter:focus {
-  outline: none;
-  border-color: #ff9800;
-  box-shadow: 0 0 0 1px rgba(255, 152, 0, 0.3);
+  outline:      none;
+  border-color: var(--accent);
+  box-shadow:   0 0 0 1px var(--accent);
 }
-
 .searchFilter::placeholder {
-  color: #888;
+  color: var(--text-muted);
 }
 
+/* Menu icon */
 .menuIcn {
-  color: #e0e0e0;
-  cursor: pointer;
+  color:      var(--text-primary, var(--text-color));
+  cursor:     pointer;
   transition: color 0.3s ease;
 }
-
 .menuIcn:hover {
-  color: #ff9800;
+  color: var(--accent);
 }
 
+/* Dropdown container */
 .menuItems {
-  position: absolute;
-  top: 110%;
-  right: 20px;
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  padding: 15px;
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  animation: slideIn 0.3s ease;
-  z-index: 1001;
+  position:        absolute;
+  top:             110%;
+  right:           20px;
+  background:      var(--surface);
+  border-radius:   8px;
+  box-shadow:      0 5px 15px rgba(0, 0, 0, 0.3);
+  padding:         15px;
+  width:           220px;
+  display:         flex;
+  flex-direction:  column;
+  gap:             10px;
+  animation:       slideIn 0.3s ease;
+  z-index:         1001;
 }
-
 @keyframes slideIn {
   from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.menuNavLink span {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 15px;
-  color: #e0e0e0;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: all 0.2s;
-  font-weight: 500;
-}
-
-.menuNavLink span:hover {
-  background-color: #2a2a2a;
-  color: #ff9800;
-}
-
+/* Links inside dropdown */
+.menuNavLink span,
 .menuNavLink p {
-  margin: 0px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 15px;
-  color: #e0e0e0;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: all 0.2s;
-  font-weight: 500;
+  display:        flex;
+  align-items:    center;
+  gap:            12px;
+  padding:        12px 15px;
+  color:          var(--text-color);
+  text-decoration:none;
+  border-radius:  5px;
+  transition:     all 0.2s;
+  font-weight:    500;
 }
-
+.menuNavLink span:hover,
 .menuNavLink p:hover {
-  background-color: #2a2a2a;
-  color: #ff9800;
+  background: var(--surface);
+  color:      var(--accent);
 }
 
+/* Logout button */
 .logoutBtn {
-  background-color: #2a2a2a;
-  color: #e0e0e0;
-  border: 1px solid #444;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s;
+  background:      var(--button-bg);
+  color:           var(--button-text);
+  border:          1px solid var(--border-color);
+  padding:         8px 16px;
+  border-radius:   5px;
+  cursor:          pointer;
+  font-weight:     500;
+  transition:      all 0.3s;
 }
-
 .logoutBtn:hover {
-  background-color: #ff9800;
-  border-color: #ff9800;
-  color: #121212;
+  background: var(--button-hover);
+  border-color: var(--button-hover);
+  color: var(--button-text);
 }
 
-.headerUser {
-  position: relative;
-  cursor: pointer;
-}
-
-.myProfile {
-  color: #888;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.myProfile:hover,
-.myProfileActive {
-  color: #ff9800;
-}
-
-.userData {
-  position: absolute;
-  top: 120%;
-  right: 0;
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  padding: 15px;
-  min-width: 220px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  animation: fadeIn 0.3s ease;
-  z-index: 1001;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.userIcDiv,
-.cgmailDiv {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  color: #e0e0e0;
-  font-weight: 500;
-}
-
+/* Filtered books container */
 .filteredCardsContainer {
-  background-color: #1e1e1e;
-  padding: 20px;
-  padding-top: 80px;
-  padding-bottom: 250px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  overflow-y: auto;
-  animation: slideDown 0.3s ease;
-  z-index: 999;
+  background:      var(--surface);
+  padding:         20px;
+  padding-top:     80px;
+  padding-bottom:  250px;
+  display:         grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap:             20px;
+  border-radius:   0 0 10px 10px;
+  box-shadow:      0 10px 20px rgba(0,0,0,0.3);
+  overflow-y:      auto;
+  animation:       slideDown 0.3s ease;
+  z-index:         999;
 }
-
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Individual book cards */
 .bookCards {
-  transition: transform 0.3s;
-  cursor: pointer;
-  background: #2a2a2a;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #444;
+  transition:       transform 0.3s;
+  cursor:           pointer;
+  background:       var(--surface);
+  border-radius:    8px;
+  overflow:         hidden;
+  border:           1px solid var(--border-color);
 }
-
 .bookCards:hover {
-  transform: translateY(-5px);
-  border-color: #ff9800;
-  box-shadow: 0 5px 15px rgba(255, 152, 0, 0.2);
+  transform:      translateY(-5px);
+  border-color:  var(--accent);
+  box-shadow:    0 5px 15px rgba( var(--accent-rgb, 0,0,0), 0.2 );
 }
 
+/* Responsive tweaks */
 @media (max-width: 768px) {
   .logoDiv {
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    align-items:     center;
+    gap:             15px;
   }
-
   .searchFilter {
-    width: 100%;
-    max-width: 100%;
-    margin: 10px 0;
+    width:           100%;
+    max-width:       100%;
+    margin:          10px 0;
   }
-
   .userDiv {
-    width: 100%;
+    width:           100%;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom:   10px;
   }
 }
 
-.div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-
-.navActions{
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.div,
+.navActions {
+  display:      flex;
+  align-items:  center;
+  gap:          10px;
 }

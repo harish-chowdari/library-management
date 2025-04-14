@@ -23,10 +23,7 @@ const sendOTPEmailForAdmin = async (req, res) => {
         const otp = Math.floor(100000 + Math.random() * 900000);
         const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
 
-        const salt = await bcrypt.genSalt(10);
-        const hashedOtp = await bcrypt.hash(otp.toString(), salt);
-
-        user.otp = hashedOtp;
+        user.otp = otp;
         user.otpExpiresAt = otpExpiresAt;
         await user.save();
 
@@ -75,8 +72,8 @@ const updateAdminPassword = async (req, res) => {
         if (!user) {
             return res.status(200).json({ userNotExist: "User not found" });
         }
-
-        const isOtpValid = await bcrypt.compare(otp.toString(), user.otp);
+// no bycrypt
+        const isOtpValid = await AdminDetails.findOne({ otp: otp });
 
         if (!isOtpValid) {
             return res.status(200).json({ otpNotValid: "Invalid OTP" });
@@ -115,10 +112,7 @@ const sendOTPEmailForUser = async (req, res) => {
         const otp = Math.floor(100000 + Math.random() * 900000);
         const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
 
-        const salt = await bcrypt.genSalt(10);
-        const hashedOtp = await bcrypt.hash(otp.toString(), salt);
-
-        user.otp = hashedOtp;
+        user.otp = otp;
         user.otpExpiresAt = otpExpiresAt;
         await user.save();
 
@@ -168,7 +162,7 @@ const updateUserPassword = async (req, res) => {
             return res.status(200).json({ userNotExist: "User not found" });
         }
 
-        const isOtpValid = await bcrypt.compare(otp.toString(), user.otp);
+        const isOtpValid = await UserDetails.findOne({ otp: otp });
 
         if (!isOtpValid) {
             return res.status(200).json({ otpNotValid: "Invalid OTP" });

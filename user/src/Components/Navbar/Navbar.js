@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../axios/axios';
 import { NavLink, useParams } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import { FaHome, FaAlignJustify, FaRegUser, FaBook, FaUser } from "react-icons/fa";
+import { FaHome, FaAlignJustify, FaRegUser, FaBook, FaUser, FaMoon, FaSun } from "react-icons/fa";
 import logo from "../../assets/[removal.ai]_ab348180-27e7-439f-b339-6d4f95342f85-screenshot-2024-03-16-at-3-46-20-am_3QQD13.png";
 import BookCard from '../BookCard/BookCard';
 import { Typewriter } from 'react-simple-typewriter';
@@ -23,6 +23,19 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [userData, setUserData] = useState({});
   const [showData, setShowData] = useState(false);
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') {
+      setTheme(saved);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -101,6 +114,9 @@ const Navbar = () => {
       </div>
 
       <div className={styles.logoDiv}>
+      <button className={styles.themeToggle} onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        {theme === 'light' ? <FaMoon size={20}/> : <FaSun size={20}/>}
+        </button>
         <div className={styles.menuIcon} onClick={() => setMenuOpen(false)}>
           <NavLink className={styles.menuNavLink} to={`/app/${userName}`}>
             <span>

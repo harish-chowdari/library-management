@@ -1,13 +1,11 @@
-/* Overall container */
 .container {
-  background: #0d0d0d;
+  background: var(--bg-color);
   padding: 2rem;
   min-height: 100vh;
-  color: #e0e0e0;
+  color: var(--text-color);
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Header section */
 .header {
   text-align: center;
   margin-bottom: 2rem;
@@ -15,57 +13,46 @@
 .header h2 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  color: #ffb400;
+  color: var(--accent);
 }
 .header p {
   font-size: 1.2rem;
-  color: #aaa;
+  color: var(--muted-text);
 }
 
-/* Empty message styling */
 .emptyMessage {
   text-align: center;
   font-size: 1.5rem;
-  color: #777;
+  color: var(--muted-text);
   margin-top: 3rem;
 }
 
-/* Grid layout for flip cards */
-/* Base grid */
 .cardGrid {
   display: grid;
   gap: 2rem;
 }
 
-/* For screens 1280px and above, 4 columns */
 @media (min-width: 1280px) {
   .cardGrid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-
-/* For screens between 1024px and 1279px, 3 columns */
 @media (max-width: 1279px) and (min-width: 1024px) {
   .cardGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-/* For screens between 768px and 1023px, 2 columns */
 @media (max-width: 1023px) and (min-width: 768px) {
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* For screens below 768px, 1 column */
 @media (max-width: 767px) {
   .cardGrid {
     grid-template-columns: 1fr;
   }
 }
 
-/* Flip card container */
 .flipCard {
   background: transparent;
   perspective: 1000px;
@@ -77,9 +64,8 @@
   height: 350px;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  transform-origin: center center; /* Rotate around the center */
+  transform-origin: center center;
 }
-
 .flipped {
   transform: rotateY(180deg);
 }
@@ -90,27 +76,24 @@
   width: 100%;
   height: 100%;
   top: 0;
-  left: 0;  /* Ensure both sides start at the same left coordinate */
+  left: 0;
   backface-visibility: hidden;
   border-radius: 15px;
   overflow: hidden;
 }
 
-
-/* Front side styling */
 .flipCardFront {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--surface);
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem 0px;
 }
 
-/* Back side styling */
 .flipCardBack {
-  background: rgba(20, 20, 20, 0.95);
-  border: 1px solid #444;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
   transform: rotateY(180deg);
   display: flex;
   align-items: center;
@@ -118,8 +101,8 @@
   padding: 1rem 0px;
 }
 
-/* Card content on front */
 .cardContent {
+    overflow-y: auto;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -133,17 +116,17 @@
   height: 130px;
   object-fit: fill;
   border-radius: 10px;
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
 }
 .imagePlaceholder {
   width: 120px;
   height: 160px;
-  background: #333;
+  background: var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  color: #888;
+  color: var(--muted-text);
   font-size: 0.8rem;
 }
 .infoSection {
@@ -152,26 +135,25 @@
 .bookName {
   font-size: 1.4rem;
   margin: 0.5rem 0;
-  color: #ffb400;
+  color: var(--accent);
 }
 .authorName {
   font-size: 1rem;
   margin: 0.3rem 0;
-  color: #bbb;
+  color: var(--text-secondary);
 }
 .isbn, .submittedOn, .description {
   font-size: 0.9rem;
-  color: #aaa;
+  color: var(--muted-text);
   margin: 0.2rem 0;
 }
 
-/* Flip button on front */
 .flipButton {
-  background: #ffb400;
+  background: var(--accent);
   border: none;
   padding: 0.8rem 1.2rem;
   border-radius: 5px;
-  color: #0d0d0d;
+  color: var(--button-text);
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s;
@@ -179,10 +161,9 @@
   margin-top: 1rem;
 }
 .flipButton:hover {
-  background: #e0a800;
+  background: var(--button-hover);
 }
 
-/* Feedback form on back */
 .feedbackForm {
   width: 90%;
   text-align: center;
@@ -190,15 +171,15 @@
 .feedbackTitle {
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  color: #ffb400;
+  color: var(--accent);
 }
 .feedbackInput {
   width: 90%;
   height: 100px;
   padding: 0.8rem;
-  background: #2a2a2a;
-  color: #e0e0e0;
-  border: 1px solid #444;
+  background: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   resize: vertical;
   margin-bottom: 1rem;
@@ -214,18 +195,17 @@
   cursor: pointer;
 }
 
-/* Submit and Back buttons on back */
 .submitButton, .backButton {
-  background: #ff9800;
+  background: var(--accent);
   border: none;
   padding: 0.7rem 1.2rem;
   border-radius: 5px;
-  color: #121212;
+  color: var(--button-text);
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s;
   margin: 0.5rem;
 }
 .submitButton:hover, .backButton:hover {
-  background: #cfb895;
+  background: var(--button-hover);
 }

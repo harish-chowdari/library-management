@@ -1,81 +1,86 @@
+/* Popup Overlay */
 .popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.popup-overlay p {  
-  font-size: 15px;
-  margin: 0;
-}
-
-.popup-content {
-  background: #1e1e1e;
-  color: #e0e0e0;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 300px;
-  text-align: center;
-  position: relative;
-  animation: slideInFromTopRight 0.3s ease-in-out;
-}
-
-.close-btn {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-  padding-bottom: 20px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #ff9800;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-  padding: 0px;
-}
-
-.close-btn:hover {
-  color: #e68900;
-  background: none;
-}
-
-
-@keyframes slideInFromTopRight {
-  from {
-    transform: translate(40px, -40px);
-    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
   }
-  to {
-    transform: translate(0, 0);
-    opacity: 1;
+  
+  /* Popup Text */
+  .popup-overlay p {  
+    font-size: 15px;
+    margin: 0;
   }
-}
-
-@keyframes slideOutToBottomLeft {
-  from {
-    transform: translate(0, 0);
-    opacity: 1;
+  
+  /* Popup Content */
+  .popup-content {
+    background: var(--surface); /* Light surface background */
+    color: var(--text-color); /* Light text color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+    position: relative;
+    animation: slideInFromTopRight 0.3s ease-in-out;
   }
-  to {
-    transform: translate(-40px, 40px);
-    opacity: 0;
+  
+  /* Close Button */
+  .close-btn {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    padding-bottom: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--accent); /* Accent color for the close button */
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    padding: 0px;
   }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  
+  .close-btn:hover {
+    color: #e68900; /* Darker accent color on hover */
+    background: none;
   }
-  to {
-    opacity: 1;
+  
+  /* Animations */
+  @keyframes slideInFromTopRight {
+    from {
+      transform: translate(40px, -40px);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
   }
-}
+  
+  @keyframes slideOutToBottomLeft {
+    from {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    to {
+      transform: translate(-40px, 40px);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

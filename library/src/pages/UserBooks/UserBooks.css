@@ -2,145 +2,146 @@
 
 /* General Page Styling */
 .user-books-container {
-  background-color: #121212;
-  color: #fff;
-  min-height: 100vh;
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Title Styling */
-.user-books-container h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #ff9800;
-  margin-bottom: 20px;
-}
-
-.user-books-container h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #ff9800;
-  margin-bottom: 20px;
-}
-
-/* Empty Message Styling */
-.user-books-empty-history {
-  font-size: 1rem;
-  color: #aaa;
-  text-align: center;
-  margin-top: 30px;
-}
-
-/* Book List Container */
-.user-books-division {
-  width: 90%;
-  max-width: 1200px;
-  margin-top: 20px;
-}
-
-/* Table Heading Row */
-.user-books-headings {
-  display: grid;
-  grid-template-columns: 100px 2fr 1.5fr 1fr 1fr 1.5fr 1fr 1fr;
-  text-align: center;
-  background-color: #1e1e1e;
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
-  color: #ff9800;
-  column-gap: 10px;
-}
-
-/* Book Card */
-.user-books-main-div {
-  background: #1f1f1f;
-  border-radius: 12px;
-  padding: 15px;
-  margin-top: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.user-books-main-div p{
-  font-size: 0.7rem;
-  color: #ddd;
-}
-
-.user-books-main-div:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
-}
-
-/* Book Item Layout */
-.user-books-items-format {
-  display: grid;
-  grid-template-columns: 100px 2fr 1.5fr 1fr 1fr 1.5fr 1fr 1fr;
-  align-items: center;
-  text-align: center;
-  padding: 12px;
-  column-gap: 10px;
-}
-
-/* Book Image */
-.user-books-items-format img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 6px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Book Name & Author */
-.user-books-items-format p {
-  font-size: 0.9rem;
-  color: #ddd;
-}
-
-/* Fine Status Styling */
-.user-books-fine {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-/* Fine Warning Text */
-.user-books-fine span {
-  color: #ff4d4d;
-}
-
-/* Buttons */
-.user-books-items-format button {
-  background-color: #ff9800;
-  border: none;
-  padding: 8px 16px;
-  color: #121212;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.user-books-items-format button:hover {
-  background-color: #e68900;
-  transform: scale(1.05);
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-  .user-books-headings,
+    background-color: var(--bg-color); /* Light background */
+    color: var(--text-color); /* Light text color */
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Title Styling */
+  .user-books-container h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent); /* Accent color for title */
+    margin-bottom: 20px;
+  }
+  
+  .user-books-container h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent); /* Accent color for subtitle */
+    margin-bottom: 20px;
+  }
+  
+  /* Empty Message Styling */
+  .user-books-empty-history {
+    font-size: 1rem;
+    color: #aaa; /* Lighter text for empty state */
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  /* Book List Container */
+  .user-books-division {
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 20px;
+  }
+  
+  /* Table Heading Row */
+  .user-books-headings {
+    display: grid;
+    grid-template-columns: 100px 2fr 1.5fr 1fr 1fr 1.5fr 1fr 1fr;
+    text-align: center;
+    background-color: var(--surface); /* Light background for table headers */
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: var(--accent); /* Accent color for table header text */
+    column-gap: 10px;
+  }
+  
+  /* Book Card */
+  .user-books-main-div {
+    background: var(--input-bg); /* Light background for book cards */
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .user-books-main-div p{
+    font-size: 0.7rem;
+    color: var(--text-color); /* Light text color for book description */
+  }
+  
+  .user-books-main-div:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3); /* Light hover shadow */
+  }
+  
+  /* Book Item Layout */
   .user-books-items-format {
-    grid-template-columns: 1fr 1fr 1fr;
-    font-size: 0.9rem;
+    display: grid;
+    grid-template-columns: 100px 2fr 1.5fr 1fr 1fr 1.5fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+    column-gap: 10px;
   }
-
+  
+  /* Book Image */
   .user-books-items-format img {
-    width: 60px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   }
-
+  
+  /* Book Name & Author */
+  .user-books-items-format p {
+    font-size: 0.9rem;
+    color: var(--text-color); /* Light text color */
+  }
+  
+  /* Fine Status Styling */
+  .user-books-fine {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  /* Fine Warning Text */
+  .user-books-fine span {
+    color: #ff4d4d; /* Warning color for fine */
+  }
+  
+  /* Buttons */
   .user-books-items-format button {
-    padding: 6px 12px;
+    background-color: var(--accent); /* Accent color for button */
+    border: none;
+    padding: 8px 16px;
+    color: var(--bg-color); /* Dark text on buttons */
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
   }
-}
+  
+  .user-books-items-format button:hover {
+    background-color: #e68900; /* Darker accent color on hover */
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .user-books-headings,
+    .user-books-items-format {
+      grid-template-columns: 1fr 1fr 1fr;
+      font-size: 0.9rem;
+    }
+  
+    .user-books-items-format img {
+      width: 60px;
+      height: 80px;
+    }
+  
+    .user-books-items-format button {
+      padding: 6px 12px;
+    }
+  }
+  

@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: center;
     height: full;
-    background-color: #181818;
+    background-color: var(--bg-color);
     padding: 20px;
 }
 
 .addbook-content {
-    background-color: #1f1f1f;
+    background-color: var(--surface);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     width: 100%;
@@ -25,7 +25,7 @@
 
 .addBook-header h2 {
     font-size: 24px;
-    color: #fff;
+    color: var(--text-color);
     font-weight: 600;
     margin: 0px auto;
 }
@@ -48,7 +48,7 @@
 .book-details-form label {
     font-size: 16px;
     font-weight: 500;
-    color: #bbb;
+    color: #555;
 }
 
 .book-details-form input,
@@ -56,18 +56,18 @@
     padding: 12px;
     font-size: 16px;
     border-radius: 8px;
-    border: 1px solid #333;
+    border: 1px solid var(--border-color);
     margin-top: 8px;
-    background-color: #2a2a2a;
-    color: #fff;
+    background-color: var(--input-bg);
+    color: var(--text-color);
     transition: all 0.3s ease-in-out;
 }
 
 .book-details-form input:focus,
 .book-details-form textarea:focus {
-    border-color: #ff9800;
+    border-color: var(--accent);
     outline: none;
-    background-color: #333;
+    /* background-color: #e2e8f0; */
 }
 
 .textarea-description {
@@ -78,7 +78,7 @@
 .book-details-form input[type="file"] {
     padding: 5px;
     background-color: transparent;
-    border: 1px solid #333;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
 }
 
@@ -101,7 +101,7 @@
     font-size: 16px;
     font-weight: 600;
     color: #fff;
-    background-color: #ff9800;
+    background-color: var(--button-bg);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -109,7 +109,7 @@
 }
 
 .book-details-form button:hover {
-    background-color: #e68900;
+    background-color: var(--button-hover);
 }
 
 .book-details-form button:active {
@@ -128,7 +128,7 @@
 
 .popUp {
     padding: 15px;
-    background-color: #1f1f1f;
+    background-color: var(--surface);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     width: 100%;
@@ -138,6 +138,6 @@
 
 .popUp .popup-message {
     font-size: 18px;
-    color: #fff;
+    color: var(--text-color);
     text-align: center;
 }

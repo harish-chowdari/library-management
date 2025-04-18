@@ -22,9 +22,8 @@
   }
   
   .cardGrid {
-    display: grid;
-    justify-content: start;
-    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
   }
@@ -36,7 +35,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 350px;
+    min-width: 350px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   

@@ -11,6 +11,7 @@
     --border-color: #cbd5e0;
     --surface:      #ffffff;
     --accent:       #3182ce;
+    --danger-color:'#ce3631';
   }
   
   /* Dark theme */
@@ -26,6 +27,7 @@
     --border-color: #444;     /* inputs, cards, etc. */
     --surface:      #2a2a2a;  /* cards, menus, dropdowns */
     --accent:       #ff9800;  /* your menu hover, card hover, etc. */
+    --danger-color:'#ce3631';
   }
   
   /* Apply to body */

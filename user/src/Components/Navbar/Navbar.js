@@ -114,9 +114,7 @@ const Navbar = () => {
       </div>
 
       <div className={styles.logoDiv}>
-      <button className={styles.themeToggle} onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-        {theme === 'light' ? <FaMoon size={20}/> : <FaSun size={20}/>}
-        </button>
+      
         <div className={styles.menuIcon} onClick={() => setMenuOpen(false)}>
           <NavLink className={styles.menuNavLink} to={`/app/${userName}`}>
             <span>
@@ -133,6 +131,9 @@ const Navbar = () => {
           onChange={handleSearchChange}
         />
         <div className={styles.navActions}>
+          <button className={styles.themeToggle} onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        {theme === 'light' ? <FaMoon size={20}/> : <FaSun size={20}/>}
+        </button>
           <div className={styles.logout} onClick={handleLogout}>
             <button className={styles.logoutBtn} onClick={handleLogout}>
               Logout

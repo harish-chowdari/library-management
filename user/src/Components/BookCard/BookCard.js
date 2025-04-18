@@ -106,19 +106,17 @@ const BookCard = ({ title, imageUrl, id }) => {
       </div>
       <div className={styles.bookImage}>
         <Link to={`/app/${userName}/book/${id}`} className={styles.link}>
-          <img className={styles.bookImg} src={imageUrl} alt={title.toUpperCase()} />
+          <img className={styles.bookImg} src={imageUrl} alt={title?.toUpperCase()} />
           <div className={styles.bookTitle}>
-            <h3 style={{ fontSize: '1rem', margin: '8px' }}>{title}</h3>
+            <h3  style={{ fontSize: '1rem', margin: '8px', textWrap: 'wrap' }}>{title}</h3>
           </div>
         </Link>
       </div>
-      <div className={styles.availableDate}>
         {isOutOfStock && (
-          <p>
+          <p className={styles.availableDate}>
             <strong>Available On:</strong> {nearestWillUseBy ? nearestWillUseBy.slice(0, 10) : 'N/A'}
           </p>
         )}
-      </div>
       <div className={styles.bookRating}>
         {feedbacks?.length > 0 && (
           <p>{renderStars(averageRating)}</p>

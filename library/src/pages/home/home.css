@@ -88,7 +88,7 @@
  }
  
  .book-cards .inc-dec button:hover:not(:disabled) {
-    background: #e68900;
+    background: #00a2ff;
  }
  
  .book-cards .dlt-btn {
@@ -151,7 +151,7 @@
  }
  
  .pagination-btn:hover {
-    background-color: #e68900;
+    background-color: var(--button-hover);
  }
  
  .pagination-btn:disabled {

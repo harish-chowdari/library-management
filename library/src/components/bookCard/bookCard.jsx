@@ -4,7 +4,7 @@ import axios from '../../axios/axios';
 import Loader from '../loader/loader';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
+const BookCard = ({ id, title, issearch, imageUrl, author, setBooks }) => {
   const [show, setShow] = useState(false);
   const [reserveCount, setReserveCount] = useState();
   const [Copies, setCopies] = useState();
@@ -101,7 +101,7 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
         />
         <div className="book-div">
            
-            <div className='edit-delete'>
+            { !issearch && <div className='edit-delete'>
               <button onClick={() => navigate(`/app/${userName}/edit-book/${id}`)} className='edit-btn'>
                 Edit
               </button>
@@ -109,7 +109,7 @@ const BookCard = ({ id, title, imageUrl, author, setBooks }) => {
               { reserveCount === 0 && <button className="dlt-btn" onClick={handleDelete}>
                 Delete
               </button>}
-            </div>
+            </div>}
               
           
           

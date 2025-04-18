@@ -183,6 +183,8 @@ const Navbar = () => {
               onClick={() => handleBookClick(book._id)}
             >
               <BookCard
+                key={book._id}
+                issearch={true}
                 id={book._id}
                 title={book.bookName}
                 author={book.authorName}

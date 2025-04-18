@@ -5,6 +5,8 @@
     box-shadow: 0 4px 10px var(--shadow);
     transition: transform 0.3s ease;
     position: relative;
+    width: 250px;
+    display: flex;
   }
   
   .bookCard:hover {
@@ -28,23 +30,28 @@
   
   .availableDate {
     position: absolute;
-    bottom: 13px;
-    left: 50%;
+    top: -2px;
+    left: 32%;
+    background-color: rgb(178, 241, 165);
     text-wrap: nowrap;
-    padding: 10px 0px;
+    padding: 2px 5px;
     transform: translateX(-50%);
-    padding: 10px;
     font-size: 14px;
-    color: var(--text-color);
+    color: black;
     text-align: center;
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
   
-  .bookTitle {
+  .bookTitle h3 {
     text-align: center;
     padding: 8px;
     color: var(--text-color);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
   }
   
   .stockDiv {
@@ -55,7 +62,7 @@
   }
   
   .outOfStock {
-    background-color: var(--danger-color);
+    background-color: red;
     color: white;
     text-wrap: nowrap;
     position: absolute;

@@ -2,8 +2,9 @@
     background: var(--surface);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); */
     transition: transform 0.3s ease;
+    min-height: 300px;
   }
   
   .book-card:hover {
@@ -50,12 +51,12 @@
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .inc-dec button:hover {
-    background-color: #e68900;
-  }
-  
+}
+
+.inc-dec button:hover {
+    background-color: var(--button-hover);
+}
+
   .inc-dec {
     display: flex;
     justify-content: space-between;
@@ -77,7 +78,7 @@
   }
   
   .book-cards .inc-dec button:hover:not(:disabled) {
-    background: #e68900;
+    background: var(--button-hover);
   }
   
   .edit-btn {
